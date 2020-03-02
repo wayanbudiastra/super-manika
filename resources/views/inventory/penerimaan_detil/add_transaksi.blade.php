@@ -156,7 +156,7 @@
         $("#showmodalitembybutton").click(function (event) {
             event.preventDefault();
             $("#showmodalitembybutton").prop('disabled', true);
-            $('#loadmodaltembyaddtransaksi').load("/load-modal-item-by-add-penerimaan");
+            $('#loadmodaltembyaddtransaksi').load('{!!  url('/'); !!}'+"/load-modal-item-by-add-penerimaan");
         });
         $("#SubmitCreateTransaksi").click(function (e) {
             $('.messagebox').removeClass('alert-danger', 'alert-success');
@@ -164,11 +164,11 @@
             $(".SubmitCreateTransaksi").attr("disabled", true);
             $(".showloading").prop('disabled', false);
             $.ajax({
-                url: '/penerimaan-detil',
+                url: '{!!  url('/'); !!}'+'/penerimaan-detil-add',
                 data: new FormData($("#CreateDataTransaksi")[0]),
                 dataType: 'json',
                 async: false,
-                type: 'post',
+                type: 'POST',
                 processData: false,
                 contentType: false,
                 success: function (response) {
@@ -189,7 +189,7 @@
                         $('#ModalAddTransaksi').modal('hide')
                         $('.modal-backdrop').remove();
                     $('#reloadpaginate').html('');
-                    $('#reloadpaginate').load("/penerimaan/"+'{!! Crypt::encrypt($idx) !!}'+"/edit");
+                    $('#reloadpaginate').load('{!!  url('/'); !!}'+"/penerimaan/"+'{!! Crypt::encrypt($idx) !!}'+"/edit");
                 },
                 error: function (data) {
                     $("#errMsg").prop('hidden', false);
@@ -198,6 +198,7 @@
                     $(".SubmitCreateTransaksi").attr("disabled", false);
                     $("#modal_create_expedition").scrollTop(0);
                     $('#ShowErrordata').html('');
+                    conlose.log(data);
 
                     $('.messagebox').show().addClass('alert-danger');
                     var messages = jQuery.parseJSON(data.responseText);

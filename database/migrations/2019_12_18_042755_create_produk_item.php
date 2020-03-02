@@ -16,13 +16,13 @@ class CreateProdukItem extends Migration
         Schema::create('produk_item', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('kode')->nullable();
-            $table->string('nama_tindakan');
+            $table->string('nama_item');
             $table->integer('katagori_item_id');
             $table->integer('satuan_besar_id');
             $table->integer('satuan_kecil_id');
             $table->integer('isi_satuan');
-            $table->decimal('harga_beli');
-            $table->decimal('harga_jual');
+            $table->decimal('harga_beli')->nullable();
+            $table->decimal('harga_jual')->nullable();
             $table->decimal('fee_dokter')->nullable();
             $table->decimal('fee_asisten')->nullable();
             $table->decimal('fee_staff')->nullable();

@@ -16,6 +16,7 @@ class CreatePenerimaanDetil extends Migration
         Schema::create('penerimaan_detil', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('penerimaan_id');
+            $table->string('nama_item')->nullable();
             $table->integer('produk_item_id');
             $table->integer('satian_kecil_id');
             $table->integer('satian_besar_id');
