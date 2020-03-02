@@ -16,6 +16,7 @@ class AddRoleToUsers extends Migration
         Schema::table('users', function (Blueprint $table) {
             //
             $table->string('role');
+            $table->enum('aktif', ['Y', 'N'])->default('Y');
         });
     }
 

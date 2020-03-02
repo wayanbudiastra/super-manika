@@ -108,7 +108,7 @@ class Registrasi1Controller extends Controller
 
     public function create(Request $request)
     {
-        dd($request->all());
+       // dd($request->all());
         $per = GetPeriode();
         $request->request->add(['no_registrasi' => max_noreg(),
                                 'tgl_reg'=> date('Y-m-d'),

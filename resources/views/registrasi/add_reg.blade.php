@@ -39,7 +39,8 @@
                 </div>
                 <form action="{{url('/registrasi/create')}}" class="form" method="POST" enctype="multipart/form-data">
                 {{csrf_field()}}
-                <div class="col-md-10">
+                <div class="row">
+                  <div class="col-md-6" >
                 <div class="form-group">
                 <label for="exampleInputEmail1">No Regs</label>
                 <input type="text" class="form-control" id="kode"  name="kode" placeholder="Kode" value=" {{$noreg}}" readonly="readonly">
@@ -64,8 +65,8 @@
                              @endforeach
                   </select>
                   </div>    
-
-                   <div class="form-group">
+               </div>  
+                   {{-- <div class="form-group">
                   <label for="exampleInputEmail1">Perawat</label>
                   <select class="form-control select" name="perawat_id" id="idPerawat">
                               <option></option>  
@@ -74,8 +75,9 @@
                                <option value='{{$a->id}}' >{{$a->nama_perawat}}</option> 
                              @endforeach
                   </select>
-                  </div>    
+                  </div>     --}}
 
+                  <div class="col-md-6">
                   <div class="form-group">
                   <label for="exampleInputEmail1">Terapis</label>
                   <select class="form-control select" name="terapis_id" id="idTerapis">
@@ -102,10 +104,11 @@
                   <label for="exampleInputEmail1">Keterangan</label>
                   <textarea name="keterangan" class="form-control" id="keterangan" cols="30" rows="5"></textarea>
                   </div>
+                  </div>
                   <div class="form-group">  
                   <input type="hidden" name="pasien_id" value="{{$p->id}}"> 
-                <a href="{{url('/registrasi')}}"  class="btn btn-danger">Close</a>
-                <button type="submit" class="btn btn-primary">Save Reg</button>
+                <a href="{{url('/registrasi')}}"  class="btn btn-danger btn-xs">Close</a>
+                <button type="submit" class="btn btn-primary btn-xs">Save Reg</button>
                 </div>
                 </form>
                 </div>
@@ -119,6 +122,8 @@
                 </div>
                <form action="{{url('/pasien/'.$p->id.'/update')}}" method="POST" enctype="multipart/form-data">
             {{csrf_field()}}
+            <div class="row">
+              <div class="col-md-6">
         <div class="form-group">
           <label for="exampleInputEmail1">Nama Pasien</label>
           <input type="text" class="form-control" id="namaDepan"  placeholder="Nama Lengkap" value="{{$p->nama}}" required="required" readonly="readonly">
@@ -166,7 +171,8 @@
           <label for="exampleInputEmail1">No Identitas</label>
           <input type="text" class="form-control" id="no_identitas" name="no_identitas"aria-describedby="emailHelp" value="{{$p->no_identitas}}" placeholder="no_identitas"  required="required" readonly="readonly">
         </div>
-
+        </div>
+        <div class="col-md-6">
         <div class="form-group">
                         <label for="exampleFormControlSelect1">Pendidikan</label>
                         <select name="pendidikan" class="form-control" id="exampleFormControlSelect1" required="required" readonly="readonly">
@@ -229,6 +235,8 @@
           <label for="exampleFormControlTextarea1">Alamat</label>
           <textarea class="form-control" id="exampleFormControlTextarea1" name="alamat" rows="3"  required="required" readonly="readonly">{{$p->alamat}}</textarea>
               </div>
+        </div>
+      </div>
         
        <!--   <div class="form-group">   
         <a href="{{url('/registrasi')}}"  class="btn btn-danger">Close</a>
