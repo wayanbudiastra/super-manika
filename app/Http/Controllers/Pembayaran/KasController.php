@@ -95,7 +95,7 @@ class KasController extends Controller
                 // store errors to log
                 \Log::error('class : ' . KasController::class . ' method : create | ' . $e);
 
-                return redirect('/kas')->with('gagal', 'Data Gagal di input');
+                return redirect('/kas')->with('gagal', 'Data Gagal di input' .$e);
             }
     }
 

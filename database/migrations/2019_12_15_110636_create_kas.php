@@ -16,7 +16,7 @@ class CreateKas extends Migration
         Schema::create('kas', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->date('tgl_open');
-            $table->date('tgl_close');
+            $table->date('tgl_close')->nullable();
             $table->decimal('kas_awal');
             $table->decimal('total_tunai');
             $table->decimal('total_debit');
