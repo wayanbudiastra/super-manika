@@ -16,11 +16,11 @@ class CreateRegistrasi1 extends Migration
         Schema::create('registrasi1', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('no_registrasi');
-            $table->integer('jenis_registrasi_id');
+            $table->integer('jenis_registrasi_id')->nullable();
             $table->integer('poli_id');
-            $table->integer('ruangan_id');
+            $table->integer('ruangan_id')->nullable();
             $table->integer('dokter_id');
-            $table->integer('rujukan')->nullable();
+            $table->integer('rujukan_id')->nullable();
             $table->timestamps();
         });
     }

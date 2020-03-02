@@ -39,7 +39,8 @@
                 </div>
                 <form action="{{url('/registrasi/'.$data->id.'/update')}}" class="form" method="POST" enctype="multipart/form-data">
                 {{csrf_field()}}
-                <div class="col-md-10">
+                <div class="row">
+                <div class="col-md-6">
                 <div class="form-group">
                 <label for="exampleInputEmail1">No Regs</label>
                 <input type="text" class="form-control" id="kode"  name="kode" placeholder="Kode" value=" {{$data->no_registrasi}}" readonly="readonly">
@@ -71,17 +72,34 @@
 
                              @endforeach
                   </select>
-                  </div>    
+                  </div>   
+                </div>
+                <div class="col-md-6">
+
+                  <div class="form-group">
+                  <label for="exampleInputEmail1">Asisten Dokter</label>
+                  <select class="form-control select" name="asdok_id" id="idAsdok">
+                              <option></option>  
+                              @foreach($asdok as $a)
+                              @if($a->id == $data->asdok_id)
+                               <option value='{{$a->id}}' selected>{{$a->nama_asdok}}</option> 
+                               @else
+                                 <option value='{{$a->id}}' >{{$a->nama_asdok}}</option> 
+                               @endif
+                                
+                              @endforeach
+                  </select>
+                  </div>  
 
                    <div class="form-group">
-                  <label for="exampleInputEmail1">Pilih Perawat</label>
-                  <select class="form-control select" name="perawat_id" id="idPerawat">
+                  <label for="exampleInputEmail1">Pilih Terapis</label>
+                  <select class="form-control select" name="terpis_id" id="idPerawat">
                               <option></option>  
-                              @foreach($perawat as $a)
-                              @if($a->id == $data->perawat_id)
-                               <option value='{{$a->id}}' selected>{{$a->nama_perawat}}</option> 
+                              @foreach($terapis as $a)
+                              @if($a->id == $data->terapis_id)
+                               <option value='{{$a->id}}' selected>{{$a->nama_terapis}}</option> 
                                @else
-                                <option value='{{$a->id}}' >{{$a->nama_perawat}}</option> 
+                                <option value='{{$a->id}}' >{{$a->nama_terapis}}</option> 
                                @endif
 
                              @endforeach
@@ -91,13 +109,15 @@
                   <label for="exampleInputEmail1">Keterangan</label>
                   <textarea name="keterangan" class="form-control" id="keterangan" cols="30" rows="5">{{$data->keterangan}}</textarea>
                   </div>
+                  </div>
+   </div>
                   <div class="form-group">  
                   <input type="hidden" name="id" value="{{$data->id}}"> 
-                <a href="{{url('/registrasi')}}"  class="btn btn-danger">Close</a>
-                <button type="submit" class="btn btn-primary">Save Reg</button>
+                <a href="{{url('/registrasi')}}"  class="btn btn-danger btn-sm">Close</a>
+                <button type="submit" class="btn btn-primary btn-sm">Save Reg</button>
                 </div>
                 </form>
-                </div>
+               
                 
                
             <div class="col-md-12">
@@ -110,7 +130,10 @@
                 </div>
                <form action="{{url('/pasien/'.$data->id.'/update')}}" method="POST" enctype="multipart/form-data">
             {{csrf_field()}}
+            <div class="row">
+               <div class="col-md-4">
         <div class="form-group">
+         
           <label for="exampleInputEmail1">Nama Pasien</label>
           <input type="text" class="form-control" id="namaDepan"  placeholder="Nama Lengkap" value="{{$data->pasien->nama}}" required="required" readonly="readonly">
         </div>
@@ -120,6 +143,7 @@
               </div>
               <div class="form-group">
           <label for="exampleInputEmail1">Tanggal Lahir</label>
+              <
           
           <input type="text" 
              class="datepicker-here form-control" 
@@ -131,6 +155,9 @@
              />
 
             </div> 
+           </div>
+
+           <div class="col-md-4">
             <div class="form-group">
             <label for="exampleFormControlSelect1">Identitas</label>
             <select name="identitas" class="form-control" id="exampleFormControlSelect1"  required="required" readonly="readonly">
@@ -205,8 +232,8 @@
 
                         </select>
                       </div>
-
-
+                      </div>
+          <div class="col-md-4">
          <div class="form-group">
           <label for="exampleInputEmail1">pekerjaan</label>
           <input type="text" class="form-control" id="pekerjaan" name="pekerjaan"aria-describedby="emailHelp" value="{{$data->pasien->pekerjaan}}" placeholder="pekerjaan" required="required" readonly="readonly">
@@ -220,12 +247,13 @@
           <label for="exampleFormControlTextarea1">Alamat</label>
           <textarea class="form-control" id="exampleFormControlTextarea1" name="alamat" rows="3"  required="required" readonly="readonly">{{$data->pasien->alamat}}</textarea>
               </div>
+              </div>
         
        <!--   <div class="form-group">   
         <a href="{{url('/registrasi')}}"  class="btn btn-danger">Close</a>
         <button type="submit" class="btn btn-primary">Save changes</button>
         </div> -->
-              
+              </div>
         </form>
               </div>
             </div>
@@ -246,5 +274,7 @@ $(".date").datepicker({
 $('#idDokter').select2({placeholder: "Pilih Dokter...", width: '100%'});
 $('#idPoli').select2({placeholder: "Pilih Poli...", width: '100%'});
 $('#idPerawat').select2({placeholder: "Pilih Perawat...", width: '100%'});
+$('#idTerapis').select2({placeholder: "Pilih Terapis...", width: '100%'});
+$('#idAsdok').select2({placeholder: "Pilih Asisten Dokter...", width: '100%'});
 </script>
 @endsection

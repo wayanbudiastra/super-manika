@@ -108,17 +108,20 @@ class Registrasi1Controller extends Controller
 
     public function create(Request $request)
     {
-       // dd($request->all());
+      
+       try{ 
         $per = GetPeriode();
         $request->request->add(['no_registrasi' => max_noreg(),
                                 'tgl_reg'=> date('Y-m-d'),
                                 'users_id' => auth()->user()->id,
                                 'periode' => $per]);
-
-        
+        // dd($request->all());
          $data = Registrasi1::create($request->all());
-        //  return $request->all();
-        return redirect('/registrasi/list')->with('sukses', 'Data Berhasil di input');
+         return redirect('/registrasi/list')->with('sukses', 'Data Berhasil di input');
+         }catch(\Exception $e){
+             return redirect('/registrasi/list')->with('error', 'Data Gagal di input ' .$e);
+         }
+       
     }
 
     public function create_new(Request $request)
@@ -146,7 +149,7 @@ class Registrasi1Controller extends Controller
         $registrasi->pasien_id = $pasien->id;
         $registrasi->dokter_id = $request->dokter_id;
         $registrasi->poli_id = $request->poli_id;
-        $registrasi->perawat_id = $request->perawat_id;
+       // $registrasi->perawat_id = $request->perawat_id;
         $registrasi->terapis_id = $request->terapis_id;
         $registrasi->asdok_id = $request->asdok_id;
         $registrasi->keterangan = $request->keterangan;
@@ -218,13 +221,17 @@ class Registrasi1Controller extends Controller
        $dokter = Dokter::where('aktif','=','Y')->get();
        $poli = Poli::where('aktif','=','Y')->get();
        $perawat = Perawat::where('aktif','=','Y')->get();
+        $terapis = Terapis::where('aktif','=','Y')->get();
+        $asdok = Asdok::where('aktif','=','Y')->get();
        //dd($data);
         return view('registrasi.edit', ['data' => $data,
             'd'=> $dokter,
             'pol'=> $poli,
             'perawat'=>$perawat,
-         'title' => 'Edit Registrasi', 
-         'subtitle' => 'Form Registrasi']);
+            'terapis'=>$terapis,
+            'asdok'=>$asdok,
+            'title' => 'Edit Registrasi', 
+            'subtitle' => 'Form Registrasi']);
     }
 
     /**
