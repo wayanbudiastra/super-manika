@@ -85,7 +85,7 @@
                                                <!--  <button type="button" class="btn btn-success btn-xs" onclick="confirmCencel('cencel-regitrasi')">Proses</button> -->
                          <!--    </form> -->
                              
-                             <button title="Input Pembayaran"class="btn btn-outline-success lanjut" data-id="{{$k->id}}">
+                             <button title="Input Pembayaran" class="btn btn-outline-success lanjut" data-id="{{$k->id}}">
                              <i class="fa fa-save"></i></button>
                             </td>
                             </tr>
@@ -145,7 +145,7 @@ $(document).ready(function() {
                        // $('#'+item_id).submit();
                        // console.log(id);
                          $.ajax({
-                            url: '/lanjut-pembayaran/'+ id,
+                            url: '{!!  url('/'); !!}'+'/lanjut-pembayaran/'+ id,
                             data: {
                             //"id": id,
                            // "_token": $("input[name='_token']").val(),
@@ -162,7 +162,7 @@ $(document).ready(function() {
                                             location.reload();  
 
                                         },
-                                        error: function (response) {
+                              error: function (response) {
                                           var json_data = response;
                                           console.log(json_data);
 

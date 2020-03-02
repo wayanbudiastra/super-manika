@@ -91,10 +91,13 @@ class PembayaranController extends Controller
          //        'message' => "Data Berhasil di input"
          //    ], 200);
         $user = auth()->user()->id;
+        $tgl_open =  date("Y-m-d");
         $cek = Kas::where([
             ['users_id','=',$user],
             ['tgl_open','=',date("Y-m-d")],
         ])->get();
+
+//dd($cek1);
        //cek apakah sudah melakukan open kas di hari tersebut
        if($cek->first()){
           try{
@@ -116,16 +119,15 @@ class PembayaranController extends Controller
             $pembayaran->save();
 
             $data = Registrasi1::find($id);
-           // $request->request->add(['aktif'=>'N']);
+            //$request->request->add(['aktif'=>'N']);
             $data->update(['aktif'=>'N']);
             //$id = Crypt::encrypt($pembayaran->id);
-            
-          //  return redirect('/pembayaran_detil')->with('sukses', 'Data berhasil di input');
+            //return redirect('/pembayaran_detil')->with('sukses', 'Data berhasil di input');
             //dd($pembayaran);
 
             return response()->json([
                 'success' => true,
-                'data' => $data,
+               
                 'message' => "Data Berhasil di input"
             ], 200);
             } catch (\Exception $e) {
@@ -140,10 +142,10 @@ class PembayaranController extends Controller
            }       
        }
        else{
-        // return redirect('/pembayaran')->with('gagal', 'Silahkan melakukan open kas terlebih dahulu..!');
-         return response()->json([
+          // return redirect('/pembayaran')->with('gagal', 'Silahkan melakukan open kas terlebih dahulu..!');
+            return response()->json([
                 'success' => false,
-
+                'cek' => $cek->toArray(),
                 'message' => "Silahkan melakukan open kas...!!"
             ], 500);
        }    
@@ -221,7 +223,7 @@ class PembayaranController extends Controller
 
             return response()->json([
                 'success' => false,
-
+                'cek' => $cek,
                 'message' => "Data Gagal di Input"
             ], 500);
         }

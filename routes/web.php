@@ -213,7 +213,7 @@ Route::group(['middleware'=> ['auth','checkRole:admin']],function(){
         Route::resource('pembayaran', 'PembayaranController');
         Route::get('pembayaran/{id}/edit', 'PembayaranController@edit');
         Route::post('pembayaran/{id}/update', 'PembayaranController@update');
-         Route::post('pembayaran/lanjut/{id}', 'PembayaranController@lanjut');
+        Route::post('pembayaran/lanjut/{id}', 'PembayaranController@lanjut');
         Route::get('pembayaran/show', 'PembayaranController@show');
         Route::get('pembayaran/proses', 'PembayaranController@proses');
         Route::get('lanjut-pembayaran/{id}','PembayaranController@lanjut_ajax'); 
