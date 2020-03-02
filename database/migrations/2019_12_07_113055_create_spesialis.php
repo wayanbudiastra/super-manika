@@ -17,6 +17,7 @@ class CreateSpesialis extends Migration
             $table->bigIncrements('id');
             $table->string('nama_spesialis');
             $table->string('keterangan')->nullable();
+            $table->enum('aktif', ['Y', 'N'])->default('Y');
             $table->timestamps();
         });
     }

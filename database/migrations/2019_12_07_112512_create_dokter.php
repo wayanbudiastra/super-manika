@@ -17,6 +17,7 @@ class CreateDokter extends Migration
             $table->bigIncrements('id');
              $table->string('nik');
             $table->string('nama');
+            $table->string('email');
             $table->string('tmp_lahir')->nullable();
             $table->date('tgl_lahir')->nullable();
             $table->integer('spesialis_id');
