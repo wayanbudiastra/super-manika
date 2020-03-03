@@ -419,7 +419,7 @@
 										</a>
 									</li>
 									<li>
-										<a href="{{url('/adjustment')}}">
+										<a href="{{url('/ajustment')}}">
 											<span class="sub-item">Adustment</span>
 										</a>
 									</li>

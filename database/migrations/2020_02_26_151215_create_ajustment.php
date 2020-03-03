@@ -15,12 +15,13 @@ class CreateAjustment extends Migration
     {
         Schema::create('ajustment', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('produk_id');
+            $table->integer('produk_item_id');
             $table->date('tgl_ajustment');
             $table->string('jenis_ajustment');
             $table->integer('qty_in')->nullable();
             $table->integer('qty_out')->nullable();
             $table->text('keterangan')->nullable();
+            $table->integer('users_id');
             $table->timestamps();
         });
     }

@@ -291,6 +291,13 @@ Route::group(['middleware'=> ['auth','checkRole:admin']],function(){
         Route::get('kartustok/cari', 'Kartustok@cari');
         Route::get('kartustok/printprev/{id}', 'Kartustok@printprev');
         Route::get('kartustok/excel/{id}', 'Kartustok@excel');
+
+        //ajustment
+
+        Route::resource('ajustment', 'AjustmentController');
+        Route::get('ajustment/{id}/edit', 'AjustmentController@edit');
+        Route::post('ajustment/cari', 'AjustmentController@cari');
+        Route::post('ajustment/store','AjustmentController@store'); 
        
       });
 
