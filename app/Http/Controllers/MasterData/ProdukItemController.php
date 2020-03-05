@@ -97,6 +97,7 @@ class ProdukItemController extends Controller
                 <p>' . $message->first('harga_beli') . '</p>
                 <p>' . $message->first('harga_jual') . '</p>');
             }
+            $request->request->add(['stok'=> '0']);
             ProdukItem::create($request->all());
 
             return redirect('/produkitem')->with('sukses', 'Data Berhasil di input');
