@@ -18,8 +18,8 @@ class CreatePenerimaanDetil extends Migration
             $table->integer('penerimaan_id');
             $table->string('nama_item')->nullable();
             $table->integer('produk_item_id');
-            $table->integer('satian_kecil_id');
-            $table->integer('satian_besar_id');
+            $table->integer('satuan_kecil_id');
+            $table->integer('satuan_besar_id');
             $table->integer('isi_satuan');
             $table->decimal('harga_beli');
             $table->integer('qty');

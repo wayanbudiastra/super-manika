@@ -120,23 +120,7 @@ class PenerimaanDetilController extends Controller
 
     public function AddPenerimaanDetail(Request $request)
     {
-        // $total = ($request->qty * $request->isi_satuan) * $request->harga_beli;
-        // $data = [
-        //         'penerimaan_id'=> $request->penerimaan_id,
-        //         'nama_item'=> $request->nama_item,
-        //         'produk_item_id'=> $request->kode,
-        //         'satuan_kecil_id'=> $request->satuan_kecil_id,
-        //         'satuan_besar_id'=> $request->satuan_besar_id,
-        //         'isi_satuan'=> $request->isi_satuan,
-        //         'qty'=> $request->qty,
-        //         'harga_beli'=> $request->harga_beli,
-        //         'subtotal'=> $total,
-        //         'users_id'=> auth()->user()->id,
-        //     ];
-
-        //  //$data = $request->all();
-        //  return response()->json(['data' => $data,
-        //     ]);
+       
         try {
             $validator = Validator::make(request()->all(), [
                 'kode' => 'required',
@@ -244,7 +228,7 @@ class PenerimaanDetilController extends Controller
                 $findproduk = ProdukItem::where('id','=',$k->produk_item_id)->first();
                 $stok_awal = $findproduk->stok;
 
-                if($request->value=='Y'){
+                if($request->value=='N'){
                 $stok_akhir = $stok_awal + $k->qty; 
                 $stok_keluar = 0;
                  $stok_masuk = $k->qty;
@@ -270,7 +254,7 @@ class PenerimaanDetilController extends Controller
                 $kartustok->stok_masuk = $stok_masuk;
                 $kartustok->stok_keluar = $stok_keluar;
                 $kartustok->stok_akhir = $stok_akhir;
-                 if($request->value=='Y'){
+                 if($request->value=='N'){
                      $kartustok->transaksi = "PENERIMAAN";
                      $kartustok->keterangan = "penerimaan barang dengan nomor ".$data->nomor_penerimaan;
                  }else{

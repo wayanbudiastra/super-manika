@@ -25,7 +25,8 @@ class Registrasi1 extends Model
     'aktif',
     'iscencel',
     'users_id',
-    'create_at','update_at'];
+    'create_at',
+    'update_at'];
 
     public function poli()
     {

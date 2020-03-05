@@ -115,11 +115,12 @@ class Registrasi1Controller extends Controller
                                 'tgl_reg'=> date('Y-m-d'),
                                 'users_id' => auth()->user()->id,
                                 'periode' => $per]);
-        // dd($request->all());
+         //dd($request->all());
          $data = Registrasi1::create($request->all());
-         return redirect('/registrasi/list')->with('sukses', 'Data Berhasil di input');
+          return redirect('/registrasi/list')->with('sukses', 'Data Berhasil di input');
          }catch(\Exception $e){
-             return redirect('/registrasi/list')->with('error', 'Data Gagal di input ' .$e);
+          
+            return redirect('/registrasi/list')->with('gagal', 'Data Gagal di input ' .$e);
          }
        
     }
@@ -157,7 +158,7 @@ class Registrasi1Controller extends Controller
         $registrasi->users_id = auth()->user()->id;
         $registrasi->periode = $per;
         $registrasi->save();
-        // dd($registrasi);
+        //dd($registrasi);
         return redirect('/registrasi/list')->with('sukses', 'Data Berhasil di input');
         }
         catch (\Exception $e) {
@@ -165,7 +166,7 @@ class Registrasi1Controller extends Controller
                 \Log::error('class : ' . SpesialisController::class . ' method : create | ' . $e);
 
         return redirect('/registrasi/list')->with('gagal', 'Data Gagal di input');
-            }       
+        }       
         
     }
 

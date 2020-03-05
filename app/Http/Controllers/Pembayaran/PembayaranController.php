@@ -137,7 +137,7 @@ class PembayaranController extends Controller
               return response()->json([
                 'success' => false,
 
-                'message' => "Data Gagal di Input"
+                'message' => $e
             ], 500);
            }       
        }

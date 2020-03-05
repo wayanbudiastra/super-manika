@@ -43,7 +43,7 @@
                   <div class="col-md-6" >
                 <div class="form-group">
                 <label for="exampleInputEmail1">No Regs</label>
-                <input type="text" class="form-control" id="kode"  name="kode" placeholder="Kode" value=" {{$noreg}}" readonly="readonly">
+                <input type="text" class="form-control" id="kode"   placeholder="Kode" value=" {{$noreg}}" readonly="readonly">
                  </div>
                  <div class="form-group">
                  <label for="exampleInputEmail1">Dokter</label>

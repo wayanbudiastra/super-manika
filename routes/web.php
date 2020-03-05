@@ -271,7 +271,7 @@ Route::group(['middleware'=> ['auth','checkRole:admin']],function(){
         Route::get('penerimaan_detil/{id}/edit', 'PembayaranDetilController@edit');
         Route::get('load-modal-data-create-penerimaan/{id}', 'PenerimaanDetilController@showmodalAddTransaksi');
         Route::get('load-modal-item-by-add-penerimaan', 'PenerimaanDetilController@ShowModalItemByAddTransaksi');
-        Route::POST('penerimaan-detil-add', 'PenerimaanDetilController@AddPenerimaanDetail');
+        Route::post('penerimaan-detil-add', 'PenerimaanDetilController@AddPenerimaanDetail');
         Route::get('penerimaan_detil/', 'PenerimaanDetilController@index');
         Route::post('penerimaan_detil/{id}/update', 'PenerimaanDetilController@update');
         Route::post('hapus-penerimaan-detail/{id}', 'PenerimaanDetilController@DeletePenerimaanDetail');
