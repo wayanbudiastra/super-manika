@@ -15,8 +15,8 @@ class UpdateToPembayaran extends Migration
     {
         Schema::table('pembayaran', function (Blueprint $table) {
             //
-            $table->enum('posting',['Y','N'])->default('N')->after('aktif');
-            $table->integer('users_id');
+            // $table->enum('posting',['Y','N'])->default('N')->after('aktif');
+            // $table->integer('users_id');
 
 
         });

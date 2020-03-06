@@ -27,7 +27,7 @@ class CreatePembayaran extends Migration
             $table->integer('invoice')->nullable();
             $table->enum('aktif', ['Y', 'N'])->default('Y');
             $table->enum('cencel', ['Y', 'N'])->default('N');
-            $table->enum('posting',['Y','N'])->default('N')->after('aktif');
+            $table->enum('posting',['Y','N'])->default('N');
             $table->integer('users_id');
             $table->enum('closing',['Y','N'])->default('N');
             $table->timestamps();

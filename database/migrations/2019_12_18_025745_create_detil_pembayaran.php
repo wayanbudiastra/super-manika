@@ -23,7 +23,6 @@ class CreateDetilPembayaran extends Migration
              $table->integer('qty');
              $table->decimal('harga_jual');
              $table->decimal('payer_net')->nullable();
-             $table->decimal('payer_net')->nullable();
              $table->decimal('pasien_net')->nullable();
              $table->decimal('subtotal');
              $table->enum('aktif', ['Y', 'N'])->default('Y');
