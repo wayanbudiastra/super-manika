@@ -22,7 +22,7 @@ class Ajustment extends Model
 
 	public function produk_item()
     {
-        return $this->belongsTo('App\model\MasterData\Produkitem', 'produk_item_id');
+        return $this->belongsTo('App\model\MasterData\ProdukItem', 'produk_item_id');
     }
 
     public function users()

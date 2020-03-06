@@ -18,6 +18,6 @@ class ProdukKatagori extends Model
 
     public function produk_item()
     {
-            return $this->belongsTo('App\model\MasterData\produkitem', 'katagori_item_id');
+            return $this->belongsTo('App\model\MasterData\ProdukItem', 'katagori_item_id');
     }
 }
