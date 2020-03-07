@@ -149,8 +149,12 @@ Route::group(['middleware'=> ['auth','checkRole:admin']],function(){
         Route::post('perawat/{id}/update', 'PerawatController@update');
 
         //terapis
+        // Route::resource('terapis', 'TerapisController');
+        // Route::post('terapis/get-detail', 'TerapisController@ubah');
         Route::resource('terapis', 'TerapisController');
-        Route::post('terapis/get-detail', 'TerapisController@ubah');
+        Route::get('terapis/{id}/edit', 'TerapisController@edit');
+        Route::post('terapis/{id}/update', 'TerapisController@update');
+
 
         //asisten dokter
         Route::resource('asisten-dokter', 'AsdokController');
