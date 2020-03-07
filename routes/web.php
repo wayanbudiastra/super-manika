@@ -213,6 +213,11 @@ Route::group(['middleware'=> ['auth','checkRole:admin']],function(){
         Route::get('kas/{id}/edit', 'KasController@edit');
         Route::post('kas/{id}/update', 'KasController@update');
 
+        //kas manual
+        Route::resource('kas_manual', 'kasManualController');
+        Route::get('kas_manual/{id}/edit', 'kasManualController@edit');
+        Route::post('kas_manual/{id}/update', 'kasManualController@update');
+
         //Pembayaran
         Route::resource('pembayaran', 'PembayaranController');
         Route::get('pembayaran/{id}/edit', 'PembayaranController@edit');

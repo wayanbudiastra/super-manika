@@ -25,7 +25,7 @@ class CreatePenerimaanDetil extends Migration
             $table->integer('qty');
             $table->decimal('subtotal');
             $table->enum('aktif',['Y','N'])->default('Y');
-            $table->integer('user_id');
+            $table->integer('users_id');
             $table->timestamps();
         });
     }
