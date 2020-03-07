@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Pembayaran;
 
-use  App\User;
+use App\User;
 use App\model\Pembayaran\Kas;
 use App\model\Pembayaran\Kas_manual;
 use App\Http\Controllers\Controller;

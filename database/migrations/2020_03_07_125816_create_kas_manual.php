@@ -21,7 +21,7 @@ class CreateKasManual extends Migration
             $table->decimal('kas_keluar');
             $table->text('keterangan')->nullable();
             $table->integer('users_id');
-            $tbale->enum('aktif',['Y','N'])->default('Y');
+            $table->enum('aktif',['Y','N'])->default('Y');
             $table->timestamps();
         });
     }

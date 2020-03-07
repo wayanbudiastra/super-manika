@@ -39,7 +39,11 @@
                 </div>
                 <form action="{{url('/registrasi/create_new')}}" class="form" method="POST" enctype="multipart/form-data">
                 {{csrf_field()}}
-                <div class="col-md-10">
+                <div class="row">
+                  
+
+                
+                <div class="col-md-6">
                 <div class="form-group">
                 <label for="exampleInputEmail1">No Regs</label>
                 <input type="text" class="form-control" id="kode"  name="kode" placeholder="Kode" value=" {{$noreg}}" readonly="readonly">
@@ -66,17 +70,8 @@
                   </select>
                   </div>   
 
-                  <div class="form-group">
-                  <label for="exampleInputEmail1">Perawat</label>
-                  <select class="form-control select" name="perawat_id" id="idPerawat">
-                              <option></option>  
-                              @foreach($perawat as $a)
-                              
-                               <option value='{{$a->id}}' >{{$a->nama_perawat}}</option> 
-                             @endforeach
-                  </select>
-                  </div>  
-
+                 </div>
+                  <div class="col-md-6">
                   <div class="form-group">
                   <label for="exampleInputEmail1">Terapis</label>
                   <select class="form-control select" name="terapis_id" id="idTerapis">
@@ -103,9 +98,9 @@
                   <label for="exampleInputEmail1">Keterangan</label>
                   <textarea name="keterangan" class="form-control" id="keterangan" cols="30" rows="5"></textarea>
                   </div>
-                  
+                  </div>
                 </div>
-            <div class="col-md-12">
+              <div class="col-md-12">
               <div class="card">
                 <div class="card-header">
                   <div class="d-flex align-items-center">
@@ -114,27 +109,28 @@
                 </div>
                 </div>
                
-      
-        <div class="form-group">
-          <label for="exampleInputEmail1">Nama Pasien</label>
-          <input type="text" name="nama" class="form-control" id="namaDepan"  placeholder="Nama Lengkap" value="" required="required">
-        </div>
-         <div class="form-group">
-          <label for="exampleInputEmail1">Tempat Lahir</label>
-          <input type="text" class="form-control"  id="nama_belakang" aria-describedby="emailHelp" name="tempat_lahir" value="" placeholder="Tempat Lahir"  required="required">
+            <div class="row">
+            <div class="col-md-6">
+            <div class="form-group">
+             <label for="exampleInputEmail1">Nama Pasien</label>
+             <input type="text" name="nama" class="form-control" id="namaDepan"  placeholder="Nama Lengkap" value="" required="required">
+            </div>
+           <div class="form-group">
+            <label for="exampleInputEmail1">Tempat Lahir</label>
+            <input type="text" class="form-control"  id="nama_belakang" aria-describedby="emailHelp" name="tempat_lahir" value="" placeholder="Tempat Lahir"  required="required">
               </div>
               <div class="form-group">
-          <label for="exampleInputEmail1">Tanggal Lahir</label>
+             <label for="exampleInputEmail1">Tanggal Lahir</label>
           
-          <input type="text" 
-             class="datepicker-here form-control" 
-             data-language='en'
-             data-position="top left"
-             name="tgl_lahir"
-             required="required"
-             />
+              <input type="text" 
+                 class="datepicker-here form-control" 
+                 data-language='en'
+                 data-position="top left"
+                 name="tgl_lahir"
+                 required="required"
+                 />
 
-            </div> 
+                </div> 
             <div class="form-group">
             <label for="exampleFormControlSelect1">Identitas</label>
             <select name="identitas" class="form-control" id="exampleFormControlSelect1"  required="required">
@@ -142,13 +138,15 @@
                           <option value="KITAS">KITAS</option>
                           <option value="PASSPORT">PASSPORT</option>
                         </select>
-                      </div>
-         <div class="form-group">
-          <label for="exampleInputEmail1">No Identitas</label>
-          <input type="text" class="form-control" id="no_identitas" name="no_identitas"aria-describedby="emailHelp" value="" placeholder="no_identitas"  required="required" >
-        </div>
+             </div>
+           </div>
+           <div class="col-md-6">
+             <div class="form-group">
+              <label for="exampleInputEmail1">No Identitas</label>
+              <input type="text" class="form-control" id="no_identitas" name="no_identitas"aria-describedby="emailHelp" value="" placeholder="no_identitas"  required="required" >
+            </div>
 
-        <div class="form-group">
+           <div class="form-group">
                         <label for="exampleFormControlSelect1">Pendidikan</label>
                         <select name="pendidikan" class="form-control" id="exampleFormControlSelect1" required="required">
                           <option value="SD">SD</option>
@@ -162,19 +160,21 @@
                       </div>
 
 
-         <div class="form-group">
-          <label for="exampleInputEmail1">pekerjaan</label>
-          <input type="text" class="form-control" id="pekerjaan" name="pekerjaan"aria-describedby="emailHelp" value="" placeholder="pekerjaan" required="required">
-        </div>
-         <div class="form-group">
-          <label for="exampleInputEmail1">no telp</label>
-          <input type="text" class="form-control" id="no_telp" name="no_telp"aria-describedby="emailHelp" placeholder="no_telp" value=" " required="required">
-        </div>
+             <div class="form-group">
+              <label for="exampleInputEmail1">pekerjaan</label>
+              <input type="text" class="form-control" id="pekerjaan" name="pekerjaan"aria-describedby="emailHelp" value="" placeholder="pekerjaan" required="required">
+            </div>
+             <div class="form-group">
+              <label for="exampleInputEmail1">no telp</label>
+              <input type="text" class="form-control" id="no_telp" name="no_telp"aria-describedby="emailHelp" placeholder="no_telp" value=" " required="required">
+            </div>
 
-        <div class="form-group">
-          <label for="exampleFormControlTextarea1">Alamat</label>
-          <textarea class="form-control" id="exampleFormControlTextarea1" name="alamat" rows="3" required="required"> </textarea>
+              <div class="form-group">
+                <label for="exampleFormControlTextarea1">Alamat</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" name="alamat" rows="3" required="required"> </textarea>
               </div>
+            </div>
+        </div>
         
        <!--   <div class="form-group">   
         <a href="{{url('/registrasi')}}"  class="btn btn-danger">Close</a>
