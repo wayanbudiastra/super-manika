@@ -94,6 +94,13 @@
                                 <input name="fee_asisten" type="text" class="form-control" value="{{$data->fee_asisten}}" placeholder="Fee Asisten">
                               </div>
                             </div>
+
+                            <div class="col-md-6">
+                              <div class="form-group form-group-default">
+                                <label>Fee Terapis</label>
+                                <input name="fee_terapis" type="text" class="form-control" placeholder="Fee Terapis" value="{{$data->fee_terapis}}">
+                              </div>
+                            </div>
                         <div class="col-sm-12">
                         @php
                         if($data->aktif == "Y"){

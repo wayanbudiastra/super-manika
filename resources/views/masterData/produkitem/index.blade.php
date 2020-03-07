@@ -190,6 +190,12 @@
                                 <input name="fee_asisten" type="text" class="form-control" placeholder="Fee Asisten">
                               </div>
                             </div>
+                            <div class="col-md-6">
+                              <div class="form-group form-group-default">
+                                <label>Fee Terapis</label>
+                                <input name="fee_terapis" type="text" class="form-control" placeholder="Fee Terapis">
+                              </div>
+                            </div>
                         
                         <div class="col-md-6">
                           <div class="form-group form-group-default">

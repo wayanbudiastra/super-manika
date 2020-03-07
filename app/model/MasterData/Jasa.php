@@ -15,6 +15,7 @@ class Jasa extends Model
     'fee_dokter',
     'fee_asisten',
     'fee_staff',
+    'fee_terapis',
     'keterangan', 
     'aktif',
     'create_at', 

@@ -22,6 +22,7 @@ class ProdukItem extends Model
     'fee_dokter',
     'fee_asisten',
     'fee_staff',
+    'fee_terapis',
     'keterangan',
     'stok',
     'stok_max',

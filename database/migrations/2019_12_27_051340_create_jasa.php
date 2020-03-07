@@ -22,6 +22,7 @@ class CreateJasa extends Migration
             $table->decimal('fee_dokter')->nullable();
             $table->decimal('fee_asisten')->nullable();
             $table->decimal('fee_staff')->nullable();
+            $table->decimal('fee_terapis')->nullable();
             $table->text('keterangan')->nullable();
             $table->enum('aktif', ['Y', 'N'])->default('Y');
             $table->timestamps();

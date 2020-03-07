@@ -42,7 +42,7 @@
                   <div class="col-md-6">
                     <div class="form-group form-group-default">
                       <label>Kode Item</label>
-                      <input name="kode" type="text" class="form-control" placeholder="Kode Item" value="{{$data->kode_item}}">
+                      <input name="kode" type="text" class="form-control" placeholder="Kode Item" value="{{$data->kode}}">
                     </div>
                   </div>
                   <div class="col-md-6">
@@ -132,6 +132,13 @@
                   <div class="form-group form-group-default">
                     <label>Fee Asisten</label>
                     <input name="fee_asisten" type="text" class="form-control" placeholder="Fee Asisten" value="{{$data->fee_asisten}}">
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="form-group form-group-default">
+                    <label>Fee Terapis</label>
+                    <input name="fee_terapis" type="text" class="form-control" placeholder="Fee Terapis" value="{{$data->fee_terapis}}">
                   </div>
                 </div>
             <div class="col-md-6">
