@@ -135,8 +135,13 @@ class ProdukItemController extends Controller
         // orWhere('nama_item', 'like', "%" . $cari . "%")->get();
 
         //dd($produkkatagori);
+        $kd = ProdukItem::max('kode');
+        // //dd($data);
+
+        $kode = kode_item($kd);
         return view('masterData.produkitem.index')->with([
                 'data'     => $data,
+                'kode' => $kode,
                 'satuanbesar' => $satuanbesar,
                 'satuankecil' => $satuankecil,
                 'produkkatagori' => $produkkatagori,
