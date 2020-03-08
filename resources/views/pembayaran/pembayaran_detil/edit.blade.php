@@ -170,12 +170,12 @@
                     $(document).on('click', '#loadmodaltransaksicreate', function (event) {
                         event.preventDefault();
                         $("#loadmodaltransaksicreate").prop('disabled', true);
-                        $('#modaladdtransaksi').load("/load-modal-data-create-transaksi/" + '{!! Crypt::encrypt($data->id) !!}');
+                        $('#modaladdtransaksi').load('{!!  url('/'); !!}'+"/load-modal-data-create-transaksi/" + '{!! Crypt::encrypt($data->id) !!}');
                     })
                     $(document).on('click', '#loadmodaltransaksitindakancreate', function (event) {
                         event.preventDefault();
                         $("#loadmodaltransaksitindakancreate").prop('disabled', true);
-                        $('#modaladdtransaksitindakan').load("/load-modal-data-create-transaksi-tindakan/" + '{!! Crypt::encrypt($data->id) !!}');
+                        $('#modaladdtransaksitindakan').load('{!!  url('/'); !!}'+"/load-modal-data-create-transaksi-tindakan/" + '{!! Crypt::encrypt($data->id) !!}');
                     })
                     $(document).on('click', '.delete', function (event) {
                         event.preventDefault();
@@ -199,7 +199,7 @@
                             .then((willDelete) => {
                                 if (willDelete) {
                                     $.ajax({
-                                        url: '/hapus-pembayaran-detail/' + id,
+                                        url: '{!!  url('/'); !!}'+'/hapus-pembayaran-detail/' + id,
                                         data: {
                                             "id": id,
                                             "_token": $("input[name='_token']").val(),
@@ -212,7 +212,7 @@
                                                 'Data Berhasil Dihapus.',
                                                 'success'
                                             )
-                                            $('#reloadpaginate').load("/pembayaran_detil/" + '{!! Crypt::encrypt($data->id) !!}' + "/edit");
+                                            $('#reloadpaginate').load('{!!  url('/'); !!}'+"/pembayaran_detil/" + '{!! Crypt::encrypt($data->id) !!}' + "/edit");
 
                                         },
                                         error: function (response) {
@@ -252,7 +252,7 @@
                             .then((willDelete) => {
                                 if (willDelete) {
                                     $.ajax({
-                                        url: '/posting-pembayaran-detail/' + id,
+                                        url: '{!!  url('/'); !!}'+'/posting-pembayaran-detail/' + id,
                                         data: {
                                             "id": id,
                                             "value": value,
@@ -266,7 +266,7 @@
                                                 'Data Berhasil '+jenis+'.',
                                                 'success'
                                             )
-                                            $('#reloadpaginate').load("/pembayaran_detil/" + '{!! Crypt::encrypt($data->id) !!}' + "/edit");
+                                            $('#reloadpaginate').load('{!!  url('/'); !!}'+"/pembayaran_detil/" + '{!! Crypt::encrypt($data->id) !!}' + "/edit");
 
                                         },
                                         error: function (response) {

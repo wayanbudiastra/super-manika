@@ -121,14 +121,14 @@ rupiahtindakan.addEventListener('keyup', function(e){
         $("#showmodalTindakanbybutton").click(function (event) {
             event.preventDefault();
             $("#showmodalTindakanbybutton").prop('disabled', true);
-            $('#loadmodalTindakanbyaddtransaksi').load("/load-modal-item-by-add-transaksi-tindakan");
+            $('#loadmodalTindakanbyaddtransaksi').load('{!!  url('/'); !!}'+"/load-modal-item-by-add-transaksi-tindakan");
         });
         $("#SubmitCreateTindakanTransaksi").click(function (e) {
             $('.messageboxTindakan').removeClass('alert-danger', 'alert-success');
             $('.messageboxTindakan').hide();
             $(".SubmitCreateTindakanTransaksi").attr("disabled", true);
             $.ajax({
-                url: '/pembayaran-detil',
+                url: '{!!  url('/'); !!}'+'/pembayaran-detil',
                 data: new FormData($("#CreateDataTindakanTransaksi")[0]),
                 dataType: 'json',
                 async: false,
@@ -149,7 +149,7 @@ rupiahtindakan.addEventListener('keyup', function(e){
                         $('#ModalAddTindakanTransaksi').modal('hide')
                         $('.modal-backdrop').remove();
                     $('#reloadpaginate').html('');
-                    $('#reloadpaginate').load("/pembayaran_detil/"+'{!! Crypt::encrypt($idx) !!}'+"/edit");
+                    $('#reloadpaginate').load('{!!  url('/'); !!}'+"/pembayaran_detil/"+'{!! Crypt::encrypt($idx) !!}'+"/edit");
                 },
                 error: function (data) {
                     $("#errMsgTindakan").prop('hidden', false);
