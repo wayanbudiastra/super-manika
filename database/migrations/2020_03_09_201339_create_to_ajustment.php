@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAjustment extends Migration
+class CreateToAjustment extends Migration
 {
     /**
      * Run the migrations.
@@ -14,14 +14,14 @@ class CreateAjustment extends Migration
     public function up()
     {
         Schema::create('ajustment', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->integer('produk_item_id');
-            $table->date('tgl_ajust');
-            $table->string('jenis_ajustment');
-            $table->integer('qty')->nullable();
-            $table->text('keterangan')->nullable();
-            $table->integer('users_id');
-            $table->timestamps();
+                $table->bigIncrements('id');
+                $table->date('tgl_ajust');
+                $table->integer('produk_item_id');
+                $table->string('jenis_ajust');
+                $table->integer('qty');
+                $table->text('keterangan')->nullable();
+                $table->integer('users_id');
+                $table->timestamps();
         });
     }
 

@@ -89,7 +89,7 @@ class JasaController extends Controller
             // store errors to log
             \Log::error('class : ' . JasaController::class . ' method : create | ' . $e);
 
-            return redirect('/jasa')->with('gagal', 'Data Gagal di input');
+            return redirect('/jasa')->with('gagal', 'Data Gagal di input' . $e);
         }        
     }
 
@@ -158,7 +158,7 @@ class JasaController extends Controller
             // store errors to log
             \Log::error('class : ' . JasaController::class . ' method : create | ' . $e);
 
-            return redirect('/jasa')->with('gagal', 'Data Gagal di input');
+            return redirect('/jasa')->with('gagal', 'Data Gagal di input ' . $e);
         }        
     }
 

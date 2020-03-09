@@ -9,7 +9,7 @@ class KartuStok extends Model
     //
 
 
-    protected $table = 'kartuStok';
+    protected $table = 'kartustok';
 
     protected $fillable = ['id',
     'produk_item_id',

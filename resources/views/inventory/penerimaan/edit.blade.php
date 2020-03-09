@@ -170,7 +170,7 @@
                                                 'Data Berhasil Dihapus.',
                                                 'success'
                                             )
-                                            $('#reloadpaginate').load("/penerimaan/" + '{!! Crypt::encrypt($data->id) !!}' + "/edit");
+                                            $('#reloadpaginate').load('{!!  url('/'); !!}'+"/penerimaan/" + '{!! Crypt::encrypt($data->id) !!}' + "/edit");
 
                                         },
                                         error: function (response) {
