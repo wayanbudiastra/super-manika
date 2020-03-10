@@ -22,12 +22,12 @@ class CreateItemmedis extends Migration
             $table->integer('isi')->nullable();
             $table->integer('katagoriitemmedis_id')->nullable();
             $table->integer('typeitemmedis_id')->nullable();
-            $table->decimal('hargabeli')->nullable();
-            $table->decimal('feedokter')->nullable();
-            $table->decimal('feenurse')->nullable();
-            $table->decimal('feelainnya')->nullable();
-            $table->decimal('hargajual')->nullable();
-            $table->decimal('markup')->nullable();
+            $table->decimal('hargabeli', 15,2)->nullable();
+            $table->decimal('feedokter', 15,2)->nullable();
+            $table->decimal('feenurse', 15,2)->nullable();
+            $table->decimal('feelainnya', 15,2)->nullable();
+            $table->decimal('hargajual', 15,2)->nullable();
+            $table->decimal('markup', 15,2)->nullable();
             $table->text('keterangan')->nullable();
             $table->integer('stok')->nullable();
             $table->integer('stok_max')->nullable();

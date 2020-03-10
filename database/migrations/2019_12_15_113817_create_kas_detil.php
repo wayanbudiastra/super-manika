@@ -18,13 +18,14 @@ class CreateKasDetil extends Migration
             $table->integer('kas_id');
             $table->date('tgl_transaksi');
             $table->string('transaksi');
-            $table->decimal('total_tunai');
-            $table->decimal('total_debit');
-            $table->decimal('total_kredit');
-            $table->decimal('total_lainya');
-            $table->decimal('total_pembayaran');
-            $table->decimal('total_kembali');
-            $table->decimal('kurang_bayar');
+            $table->decimal('total_tunai', 15,2);
+            $table->decimal('total_debit', 15,2);
+            $table->decimal('total_kredit', 15,2);
+            $table->decimal('total_lainya', 15,2);
+            $table->decimal('total_pembayaran', 15,2);
+            $table->decimal('total_kembali', 15,2);
+            $table->decimal('total_diskon', 15,2);
+            $table->decimal('kurang_bayar', 15,2);
             $table->timestamps();
         });
     }

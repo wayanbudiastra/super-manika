@@ -18,9 +18,9 @@ class CreateTindakan extends Migration
             $table->string('kode');
             $table->string('nm_tindakan');
             $table->integer('katagoritindakan_id');
-            $table->decimal('tarif')->nullable();
-            $table->decimal('feedokter')->nullable();
-            $table->decimal('feenurse')->nullable();
+            $table->decimal('tarif',15,2)->nullable();
+            $table->decimal('feedokter',15,2)->nullable();
+            $table->decimal('feenurse',15,2)->nullable();
             $table->text('keterangan');
             $table->timestamps();
         });

@@ -237,6 +237,7 @@ class PembayaranDetilController extends Controller
                 'pasien_net'=> 0,
                 'subtotal'=> $total,
                 'diskon' => $diskon,
+                'remember_token' => str_random(20),
                 'fee_staff'=> $findData->fee_staff,
                 'fee_dokter'=> $findData->fee_dokter,
                 'fee_asisten'=> $findData->fee_asisten,

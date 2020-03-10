@@ -83,6 +83,7 @@ class KasClosingController extends Controller
         $kas = Kas::find($id);
        // dd($kas->toArray());
         $pembayaran = Pembayaran::where('kas_id','=',$id)->get();
+        $kas_manual = Kas_manual::where('kas_id','=','id')->get();
         dd($pembayaran->toArray());
 
     }

@@ -26,6 +26,7 @@ class Pembayaran extends Model
             'posting',
             'users_id',
             'iscencel',
+            'remember_token',
             'aktif'
         ];
 

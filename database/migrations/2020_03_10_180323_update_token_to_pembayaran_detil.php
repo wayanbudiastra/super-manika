@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class UpdateLagiToPembayaranDetil extends Migration
+class UpdateTokenToPembayaranDetil extends Migration
 {
     /**
      * Run the migrations.
@@ -15,11 +15,8 @@ class UpdateLagiToPembayaranDetil extends Migration
     {
         Schema::table('pembayaran_detil', function (Blueprint $table) {
             //
-            $table->decimal('diskon',15,2)->nullable();
-            $table->decimal('fee_dokter',15,2)->nullable();
-            $table->decimal('fee_asisten',15,2)->nullable();
-            $table->decimal('fee_staff',15,2)->nullable();
-            $table->decimal('fee_terapis',15,2)->nullable();
+            $table->rememberToken()->unique();
+       
         });
     }
 

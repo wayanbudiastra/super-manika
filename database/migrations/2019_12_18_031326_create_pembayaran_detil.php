@@ -21,10 +21,10 @@ class CreatePembayaranDetil extends Migration
              $table->string('nama_item');
              $table->string('katagori_item');
              $table->integer('qty');
-             $table->decimal('harga_jual');
-             $table->decimal('payer_net')->nullable();
-             $table->decimal('pasien_net')->nullable();
-             $table->decimal('subtotal');
+             $table->decimal('harga_jual',15,2);
+             $table->decimal('payer_net',15,2)->nullable();
+             $table->decimal('pasien_net',15,2)->nullable();
+             $table->decimal('subtotal',15,2);
              $table->enum('aktif', ['Y', 'N'])->default('Y');
              $table->integer('users_id');
             $table->timestamps();

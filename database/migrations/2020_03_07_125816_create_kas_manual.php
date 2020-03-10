@@ -17,8 +17,8 @@ class CreateKasManual extends Migration
             $table->bigIncrements('id');
             $table->integer('kas_id');
             $table->string('transaksi');
-            $table->decimal('kas_masuk');
-            $table->decimal('kas_keluar');
+            $table->decimal('kas_masuk',15,2);
+            $table->decimal('kas_keluar',15,2);
             $table->text('keterangan')->nullable();
             $table->integer('users_id');
             $table->enum('aktif',['Y','N'])->default('Y');

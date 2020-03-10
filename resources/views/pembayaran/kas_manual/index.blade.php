@@ -55,8 +55,9 @@
                                         <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>Tanggal Open</th>
-                                            <th>Saldo Awal</th>
+                                            <th>Transaksi</th>
+                                            <th>Kas Masuk</th>
+                                            <th>Kas Keluar</th>
                                             <th>Keterangan</th>
                                             <th>Aktif</th>
                                             <th>Aksi</th>
@@ -67,15 +68,16 @@
                                         @foreach($data as $k)
                                             <tr>
                                                 <td>{{$no=$no+1}}</td>
-                                                <td>{{tgl_indo($k->tgl_open)}}</td>
-                                                <td>{{rupiah($k->kas_awal)}}</td>
+                                                <td>{{$k->transaksi}}</td>
+                                                <td>{{rupiah($k->kas_masuk)}}</td>
+                                                <td>{{rupiah($k->kas_keluar)}}</td>
                                                 <td>{{$k->keterangan}}</td>
                                                 
                                                 <td>{!!  ($k->aktif == "Y") ? '<span class="btn btn-success btn-round btn-xs">Ya</span>' : ('<span class="btn btn-danger btn-round btn-xs">Tidak</span>')!!}</td>
                                                 <td>
                                                     <center>
                                                         @if($k->aktif=="Y")
-                                                        <a href="{{url('/kas/'.$k->id.'/edit')}}"
+                                                        <a href="{{url('/kas_manual/'.$k->id.'/edit')}}"
                                                                class="btn btn-warning btn-xs">Update</a>
                                                         @endif</center>
                                                 </td>

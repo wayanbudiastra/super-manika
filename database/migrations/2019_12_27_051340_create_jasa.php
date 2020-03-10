@@ -18,11 +18,11 @@ class CreateJasa extends Migration
             $table->string('kode');
             $table->string('nama_jasa');
             $table->string('jasakatagori_id');
-            $table->decimal('harga_jual');
-            $table->decimal('fee_dokter')->nullable();
-            $table->decimal('fee_asisten')->nullable();
-            $table->decimal('fee_staff')->nullable();
-            $table->decimal('fee_terapis')->nullable();
+            $table->decimal('harga_jual',15,2);
+            $table->decimal('fee_dokter',15,2)->nullable();
+            $table->decimal('fee_asisten',15,2)->nullable();
+            $table->decimal('fee_staff',15,2)->nullable();
+            $table->decimal('fee_terapis',15,2)->nullable();
             $table->text('keterangan')->nullable();
             $table->enum('aktif', ['Y', 'N'])->default('Y');
             $table->timestamps();

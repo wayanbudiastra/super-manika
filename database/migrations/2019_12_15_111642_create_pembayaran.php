@@ -19,11 +19,11 @@ class CreatePembayaran extends Migration
             $table->integer('registrasi1_id');
             $table->string('no_invoice')->nullable();
             $table->date('tgl_pembayaran');
-            $table->decimal('total_transaksi');
-            $table->decimal('total_diskon');
-            $table->decimal('total_kembali');
-            $table->decimal('total_pembayaran');
-            $table->decimal('kurang_bayar')->nullable();
+            $table->decimal('total_transaksi', 15,2);
+            $table->decimal('total_diskon', 15,2);
+            $table->decimal('total_kembali', 15,2);
+            $table->decimal('total_pembayaran', 15,2);
+            $table->decimal('kurang_bayar', 15,2)->nullable();
             $table->integer('invoice')->nullable();
             $table->enum('aktif', ['Y', 'N'])->default('Y');
             $table->enum('cencel', ['Y', 'N'])->default('N');

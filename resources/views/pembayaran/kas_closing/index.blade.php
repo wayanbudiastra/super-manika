@@ -46,42 +46,43 @@
                                         {!! session('gagal') !!}
                                     </div>
                                 @endif
-                                <div class="table-responsive">
-                                    <table id="basic-datatables" class="display table table-striped table-hover">
-                                        <thead>
-                                        <tr>
-                                            <th>No</th>
-                                            <th>Tanggal Open</th>
-                                            <th>Saldo Awal</th>
-                                            <th>Keterangan</th>
-                                            <th>Aktif</th>
-                                            <th>Aksi</th>
-                                        </tr>
-                                        </thead>
+                                
+                                <div class="nav-tabs-custom">
+                                    <ul class="nav nav-tabs">
+                                      <li class="active nav-item"><a href="#tab_1" data-toggle="tab">Rawat Jalan</a></li>
+                                      <li class="separator">
+                                        <i class="flaticon-right-arrow"></i>
+                                      </li>
+                                      <li class="nav-item"><a href="#tab_2" data-toggle="tab">Retail</a></li>
+                                      <li class="separator">
+                                        <i class="flaticon-right-arrow"></i>
+                                      </li>
+                                      <li class="nav-item"><a href="#tab_3" data-toggle="tab">Kas Manual</a></li>
+                                      
+                                    </ul>
+                                    <div class="tab-content">
 
-                                        <tbody>
-                                        @foreach($data as $k)
-                                            <tr>
-                                                <td>{{$no=$no+1}}</td>
-                                                <td>{{tgl_indo($k->tgl_open)}}</td>
-                                                <td>{{rupiah($k->kas_awal)}}</td>
-                                                <td>{{$k->keterangan}}</td>
-                                                
-                                                <td>{!!  ($k->aktif == "Y") ? '<span class="btn btn-success btn-round btn-xs">Ya</span>' : ('<span class="btn btn-danger btn-round btn-xs">Tidak</span>')!!}</td>
-                                                <td>
-                                                    <center>
-                                                        @if($k->aktif=="Y")
-                                                        <a href="{{url('/kas_closing/'.$k->id.'/edit')}}"
-                                                               class="btn btn-primary btn-sm">Proses</a>
-                                                        @endif
-                                                    </center>
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                        </tbody>
-                                    </table>
-                                <!-- <center>{{ $data->links() }}</center> -->
+
+                                        <div class="tab-pane active" id="tab_1">
+                                            @include('pembayaran.kas_closing.pane1')
+                                        </div>
+
+
+                                        <div class="tab-pane" id="tab_2">
+                                            @include('pembayaran.kas_closing.pane2')
+                                           
+                                        </div>
+
+                                        <div class="tab-pane" id="tab_3">
+                                            @include('pembayaran.kas_closing.pane3')
+                                           
+                                        </div>
+
+
+                                    </div>
                                 </div>
+
+
                             </div>
                         </div>
                     </div>
@@ -90,52 +91,7 @@
         </div>
 
 
-        <div class="modal fade" id="addRowModal" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header no-bd">
-                        <h5 class="modal-title">
-                            <span class="fw-light">
-                             {{$title}}
-                            </span>
-                        </h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-
-                        <form action="{{url('/kas')}}" method="POST" enctype="multipart/form-data">
-                            {{csrf_field()}}
-                            <div class="row">
-                                
-                                <div class="col-md-12">
-                                    <div class="form-group form-group-default">
-                                        <label>Saldo Awal</label>
-                                        <input name="kas_awal" type="text" class="form-control"
-                                               placeholder="Saldo Awal">
-                                    </div>
-                                </div>
-                                
-                                <div class="col-md-12">
-                                    <div class="form-group form-group-default">
-                                        <label>Keterangan kas</label>
-                                        <input name="keterangan" type="text" class="form-control"
-                                               placeholder="Alamat kas">
-                                    </div>
-                                </div>
-                                
-                            </div>
-
-                    </div>
-                    <div class="modal-footer no-bd">
-                        <button type="submit" class="btn btn-primary">Simpan</button>
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Tutup</button>
-                    </div>
-                </div>
-                </form>
-            </div>
-        </div>
+       
         <!-- TES -->
 
         <!-- </div> -->
