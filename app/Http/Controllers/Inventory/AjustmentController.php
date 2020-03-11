@@ -128,7 +128,7 @@ class AjustmentController extends Controller
                      $stok_keluar = $request->qty;
                      $stok_masuk = 0;
                     }
-                   
+                
                 //update data produk
                 ProdukItem::where('id',$findproduk->id)
                             ->update([
