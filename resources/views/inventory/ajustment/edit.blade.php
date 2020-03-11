@@ -42,14 +42,19 @@
                 <div class="col-md-10">
                   <input type="hidden" class="form-control" id="id"  name="id" value="{{ $data->id }}">
                   <div class="form-group">
-                    <label for="exampleInputEmail1">Kode Produk</label>
+                    <label for="exampleInputEmail1">Kode Produk Item</label>
                     <input type="text" class="form-control" id="kode"  name="kode" value="{{ $data->kode }}" readonly="readonly">
                   </div>
-
+                  
                   <div class="form-group">
+                    <label for="exampleInputEmail1">Nama Produk Item</label>
+                    <input type="text" class="form-control" id="kode"  name="kode" value="{{ $data->nama_item }}" readonly="readonly">
+                  </div>
+
+                  {{-- <div class="form-group">
                     <label for="exampleInputEmail1">Tanggal Ajustment</label>
                     <input type="date" class="form-control" id="tgl_ajust"  name="tgl_ajust" value="-">
-                  </div>
+                  </div> --}}
               
                   <div class="col-sm-12 form-group">
                     <label for="exampleInputEmail1">Jenis Ajustment</label>

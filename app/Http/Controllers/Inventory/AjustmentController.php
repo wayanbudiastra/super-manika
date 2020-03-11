@@ -90,8 +90,6 @@ class AjustmentController extends Controller
      */
     public function store(Request $request)
     {  
-
-       // dd($request->all());
         try {
             $validator      = Validator::make(request()->all(), [
                 'qty'       => 'required|numeric',
@@ -109,7 +107,7 @@ class AjustmentController extends Controller
                 ], 433);
             }
                 Ajustment::create([
-                    'tgl_ajust'=> $request->tgl_ajust,
+                    'tgl_ajust'=> date('Y-m-d'),
                     'produk_item_id'=> $request->id,
                     'jenis_ajust'=> $request->aktif,
                     'qty'=> $request->qty,
@@ -158,17 +156,19 @@ class AjustmentController extends Controller
                 return redirect('/ajustment')->with('sukses', 'Data Berhasil di input');
                 // return response()->json([
                 //     'success' => true,
+    
                 //     'message' => "Data Ajustment Berhasil di input"
                 // ], 200);
             } catch (\Exception $e) {
                 // store errors to log
                 \Log::error('class : ' . AjustmentController::class . ' method : create | ' . $e);
 
-                return redirect(back())->with('gagal', 'Data Gagal di input'.$e);
-                // return response()->json([
-                //     'success' => false,
-                //     'message' => "Data Item Gagal di Input"
-                // ], 500);
+                // return redirect(back())->with('gagal', 'Data Gagal di input');
+                return response()->json([
+                    'success' => false,
+    
+                    'message' => "Data Item Gagal di Input"
+                ], 500);
             }
     }
 
@@ -191,8 +191,8 @@ class AjustmentController extends Controller
      */
     public function edit($id)
     {
-        // $idx = Crypt::decrypt($id);
-        $data = ProdukItem::findOrFail($id);
+        $idx = Crypt::decrypt($id);
+        $data = ProdukItem::findOrFail($idx);
         $ajustment = Ajustment::where('produk_item_id', $data->id)->orderBy('id', 'desc')->paginate(100);
         $satuanbesar = SatuanBesar::where('aktif','=','Y')->get()->toArray();
         $satuankecil = SatuanKecil::where('aktif','=','Y')->get()->toArray();

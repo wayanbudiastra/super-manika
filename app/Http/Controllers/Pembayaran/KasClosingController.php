@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Pembayaran;
     use App\model\MasterData\Dokter;
     use App\model\Pembayaran\Kas;
     use App\model\Pembayaran\Pembayaran;
+    use App\model\Pembayaran\Kas_manual;
     use App\Http\Controllers\Controller;
     use App\Http\Requests\MasterData\DokterRequest;
     use Illuminate\Http\Request;
@@ -84,7 +85,16 @@ class KasClosingController extends Controller
        // dd($kas->toArray());
         $pembayaran = Pembayaran::where('kas_id','=',$id)->get();
         $kas_manual = Kas_manual::where('kas_id','=','id')->get();
-        dd($pembayaran->toArray());
+       // dd($pembayaran->toArray());
+
+    //    $row = $this->kas->where('aktif','=','Y')->orderBy('id', 'desc')->paginate(30);
+        return view('pembayaran.kas_closing.closing')->with([
+               'pembayaran'             => $pembayaran->toArray(),
+               'kas_manual'             => $kas_manual->toArray(),
+               'title'            => 'Data Kas',
+               'subtitle'         => 'Proses Closing',
+               'no'               => '0',
+           ]);
 
     }
 

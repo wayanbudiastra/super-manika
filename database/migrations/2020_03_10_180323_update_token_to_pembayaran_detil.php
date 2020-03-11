@@ -29,6 +29,7 @@ class UpdateTokenToPembayaranDetil extends Migration
     {
         Schema::table('pembayaran_detil', function (Blueprint $table) {
             //
+            
         });
     }
 }
