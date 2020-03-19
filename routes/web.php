@@ -227,7 +227,7 @@ Route::group(['middleware'=> ['auth','checkRole:admin']],function(){
         Route::get('load-modal-item-by-add-transaksi', 'PembayaranDetilController@ShowModalItemByAddTransaksi');
         Route::get('load-modal-item-by-add-transaksi-tindakan', 'PembayaranDetilController@ShowModalItemByAddTransaksiTindakan');
         Route::post('pembayaran-detil', 'PembayaranDetilController@AddPembayaranDetail');
-        Route::get('pembayaran_detil/', 'PembayaranDetilController@index');
+     //   Route::get('pembayaran_detil/', 'PembayaranDetilController@index');
         Route::post('pembayaran_detil/{id}/update', 'PembayaranDetilController@update');
         Route::post('hapus-pembayaran-detail/{id}', 'PembayaranDetilController@DeletePembayaranDetail');
         Route::post('posting-pembayaran-detail/{id}', 'PembayaranDetilController@Posting');
@@ -278,6 +278,8 @@ Route::group(['middleware'=> ['auth','checkRole:admin']],function(){
         Route::post('posting-penerimaan-detail/{id}', 'PenerimaanDetilController@Posting');
         Route::get('penerimaan_detil/printprev/{id}', 'PenerimaanDetilController@printprev');
 
+        // Transaksi Detail 
+        Route::resource('transaksi_detail/{id}/edit','TransaksiDetailController@edit');
 
         //retur
         Route::resource('retur', 'ReturController');
