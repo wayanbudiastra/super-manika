@@ -93,8 +93,8 @@
 
 
         <div class="modal fade" id="addRowModal" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content modal-lg">
                     <div class="modal-header no-bd">
                         <h5 class="modal-title">
                             <span class="fw-light">
@@ -162,13 +162,7 @@
                                                placeholder="Tempat Lahir">
                                     </div>
                                 </div>
-                                <div class="col-md-12">
-                                    <div class="form-group form-group-default">
-                                        <label>Nomer Telp</label>
-                                        <input name="no_telp" type="text" class="form-control"
-                                               placeholder="Nomer Telepon">
-                                    </div>
-                                </div>
+                               
                                 
                             </div>
 

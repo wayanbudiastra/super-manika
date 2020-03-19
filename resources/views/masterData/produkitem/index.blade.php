@@ -110,7 +110,7 @@
                               <div class="col-md-6">
                                 <div class="form-group form-group-default">
                                   <label>Kode Item</label>
-                                  <input name="kode" type="text" class="form-control" placeholder="Kode Item">
+                                <input name="kode" type="text" class="form-control" placeholder="Kode Item" value="{{$kode}}" readonly>
                                 </div>
                               </div>
                               <div class="col-md-6">
@@ -188,6 +188,12 @@
                               <div class="form-group form-group-default">
                                 <label>Fee Asisten</label>
                                 <input name="fee_asisten" type="text" class="form-control" placeholder="Fee Asisten">
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="form-group form-group-default">
+                                <label>Fee Terapis</label>
+                                <input name="fee_terapis" type="text" class="form-control" placeholder="Fee Terapis">
                               </div>
                             </div>
                         

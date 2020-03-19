@@ -25,6 +25,8 @@ class PembayaranDetil extends Model
             'fee_dokter',
             'fee_asisten',
             'fee_staff',
+            'fee_terapis',
+            'remember_token',
             'aktif',
             'users_id'
         ];

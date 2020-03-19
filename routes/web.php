@@ -149,8 +149,12 @@ Route::group(['middleware'=> ['auth','checkRole:admin']],function(){
         Route::post('perawat/{id}/update', 'PerawatController@update');
 
         //terapis
+        // Route::resource('terapis', 'TerapisController');
+        // Route::post('terapis/get-detail', 'TerapisController@ubah');
         Route::resource('terapis', 'TerapisController');
-        Route::post('terapis/get-detail', 'TerapisController@ubah');
+        Route::get('terapis/{id}/edit', 'TerapisController@edit');
+        Route::post('terapis/{id}/update', 'TerapisController@update');
+
 
         //asisten dokter
         Route::resource('asisten-dokter', 'AsdokController');
@@ -208,6 +212,17 @@ Route::group(['middleware'=> ['auth','checkRole:admin']],function(){
         Route::resource('kas', 'KasController');
         Route::get('kas/{id}/edit', 'KasController@edit');
         Route::post('kas/{id}/update', 'KasController@update');
+
+        //kas manual
+        Route::resource('kas_manual', 'KasManualController');
+        Route::get('kas_manual/{id}/edit', 'KasManualController@edit');
+        Route::post('kas_manual/{id}/update', 'KasManualController@update');
+
+        //kas Closing
+        Route::resource('kas_closing', 'KasClosingController');
+        Route::get('kas_closing/{id}/edit', 'KasClosingController@edit');
+        Route::post('kas_closing/{id}/update', 'KasClosingController@update');
+
 
         //Pembayaran
         Route::resource('pembayaran', 'PembayaranController');
@@ -267,11 +282,11 @@ Route::group(['middleware'=> ['auth','checkRole:admin']],function(){
 
 
         Route::resource('penerimaan_detil', 'PenerimaanDetilController');
-        //Pembayaran Detil
+        //Penerimaan Detil
         Route::get('penerimaan_detil/{id}/edit', 'PembayaranDetilController@edit');
         Route::get('load-modal-data-create-penerimaan/{id}', 'PenerimaanDetilController@showmodalAddTransaksi');
         Route::get('load-modal-item-by-add-penerimaan', 'PenerimaanDetilController@ShowModalItemByAddTransaksi');
-        Route::POST('penerimaan-detil-add', 'PenerimaanDetilController@AddPenerimaanDetail');
+        Route::post('penerimaan-detil-add', 'PenerimaanDetilController@AddPenerimaanDetail');
         Route::get('penerimaan_detil/', 'PenerimaanDetilController@index');
         Route::post('penerimaan_detil/{id}/update', 'PenerimaanDetilController@update');
         Route::post('hapus-penerimaan-detail/{id}', 'PenerimaanDetilController@DeletePenerimaanDetail');
@@ -293,6 +308,13 @@ Route::group(['middleware'=> ['auth','checkRole:admin']],function(){
         Route::get('kartustok/cari', 'Kartustok@cari');
         Route::get('kartustok/printprev/{id}', 'Kartustok@printprev');
         Route::get('kartustok/excel/{id}', 'Kartustok@excel');
+
+        //ajustment
+
+        Route::resource('ajustment', 'AjustmentController');
+        Route::get('ajustment/{id}/edit', 'AjustmentController@edit');
+        Route::post('ajustment/cari', 'AjustmentController@cari');
+        Route::post('ajustment/store','AjustmentController@store'); 
        
       });
 

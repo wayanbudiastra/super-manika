@@ -116,6 +116,7 @@ class PembayaranController extends Controller
             $pembayaran->cencel = 'N';
             $pembayaran->closing = 'N';
             $pembayaran->users_id = $user;
+            $pembayaran->remember_token = str_random(20);
             $pembayaran->save();
 
             $data = Registrasi1::find($id);
@@ -137,7 +138,7 @@ class PembayaranController extends Controller
               return response()->json([
                 'success' => false,
 
-                'message' => "Data Gagal di Input"
+                'message' => $e
             ], 500);
            }       
        }

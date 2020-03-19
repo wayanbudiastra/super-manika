@@ -22,11 +22,11 @@ class CreatePenerimaanDetil extends Migration
             $table->integer('satuan_kecil_id');
             $table->integer('satuan_besar_id');
             $table->integer('isi_satuan');
-            $table->decimal('harga_beli');
+            $table->decimal('harga_beli',15,2);
             $table->integer('qty');
-            $table->decimal('subtotal');
+            $table->decimal('subtotal',15,2);
             $table->enum('aktif',['Y','N'])->default('Y');
-            $table->integer('user_id');
+            $table->integer('users_id');
             $table->timestamps();
         });
     }

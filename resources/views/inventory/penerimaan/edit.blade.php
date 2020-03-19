@@ -128,12 +128,12 @@
                     $(document).on('click', '#loadmodaltransaksicreate', function (event) {
                         event.preventDefault();
                         $("#loadmodaltransaksicreate").prop('disabled', true);
-                        $('#modaladdtransaksi').load("/load-modal-data-create-penerimaan/" + '{!! Crypt::encrypt($data->id) !!}');
+                        $('#modaladdtransaksi').load('{!!  url('/'); !!}'+"/load-modal-data-create-penerimaan/" + '{!! Crypt::encrypt($data->id) !!}');
                     })
                     $(document).on('click', '#loadmodaltransaksitindakancreate', function (event) {
                         event.preventDefault();
                         $("#loadmodaltransaksitindakancreate").prop('disabled', true);
-                        $('#modaladdtransaksitindakan').load("/load-modal-data-create-transaksi-tindakan/" + '{!! Crypt::encrypt($data->id) !!}');
+                        $('#modaladdtransaksitindakan').load('{!!  url('/'); !!}'+"/load-modal-data-create-transaksi-tindakan/" + '{!! Crypt::encrypt($data->id) !!}');
                     })
                     $(document).on('click', '.delete', function (event) {
                         event.preventDefault();
@@ -157,7 +157,7 @@
                             .then((willDelete) => {
                                 if (willDelete) {
                                     $.ajax({
-                                        url: '/hapus-penerimaan-detail/' + id,
+                                        url: '{!!  url('/'); !!}'+'/hapus-penerimaan-detail/' + id,
                                         data: {
                                             "id": id,
                                             "_token": $("input[name='_token']").val(),
@@ -170,7 +170,7 @@
                                                 'Data Berhasil Dihapus.',
                                                 'success'
                                             )
-                                            $('#reloadpaginate').load("/penerimaan/" + '{!! Crypt::encrypt($data->id) !!}' + "/edit");
+                                            $('#reloadpaginate').load('{!!  url('/'); !!}'+"/penerimaan/" + '{!! Crypt::encrypt($data->id) !!}' + "/edit");
 
                                         },
                                         error: function (response) {
@@ -210,7 +210,7 @@
                             .then((willDelete) => {
                                 if (willDelete) {
                                     $.ajax({
-                                        url: '/posting-penerimaan-detail/' + id,
+                                        url: '{!!  url('/'); !!}'+'/posting-penerimaan-detail/' + id,
                                         data: {
                                             "id": id,
                                             "value": value,
@@ -224,7 +224,7 @@
                                                 'Data Berhasil '+jenis+'.',
                                                 'success'
                                             )
-                                            $('#reloadpaginate').load("/penerimaan/" + '{!! Crypt::encrypt($data->id) !!}' + "/edit");
+                                            $('#reloadpaginate').load('{!!  url('/'); !!}'+"/penerimaan/" + '{!! Crypt::encrypt($data->id) !!}' + "/edit");
 
                                         },
                                         error: function (response) {

@@ -22,6 +22,7 @@ class ProdukItem extends Model
     'fee_dokter',
     'fee_asisten',
     'fee_staff',
+    'fee_terapis',
     'keterangan',
     'stok',
     'stok_max',
@@ -36,17 +37,17 @@ class ProdukItem extends Model
 
     public function produk_katagori()
     {
-            return $this->belongsTo('App\model\MasterData\produkkatagori', 'katagori_item_id');
+            return $this->belongsTo('App\model\MasterData\ProdukKatagori', 'katagori_item_id');
     }
 
     public function satuan_besar()
     {
-            return $this->belongsTo('App\model\MasterData\satuanbesar', 'satuan_besar_id');
+            return $this->belongsTo('App\model\MasterData\SatuanBesar', 'satuan_besar_id');
     }
 
     public function satuan_kecil()
     {
-            return $this->belongsTo('App\model\MasterData\satuankecil', 'satuan_kecil_id');
+            return $this->belongsTo('App\model\MasterData\SatuanKecil', 'satuan_kecil_id');
     }
 
     //protected $with = ['suplier','suplier_produkitem'];

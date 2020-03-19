@@ -21,11 +21,12 @@ class CreateProdukItem extends Migration
             $table->integer('satuan_besar_id');
             $table->integer('satuan_kecil_id');
             $table->integer('isi_satuan');
-            $table->decimal('harga_beli')->nullable();
-            $table->decimal('harga_jual')->nullable();
-            $table->decimal('fee_dokter')->nullable();
-            $table->decimal('fee_asisten')->nullable();
-            $table->decimal('fee_staff')->nullable();
+            $table->decimal('harga_beli',15,2)->nullable();
+            $table->decimal('harga_jual',15,2)->nullable();
+            $table->decimal('fee_dokter',15,2)->nullable();
+            $table->decimal('fee_asisten',15,2)->nullable();
+            $table->decimal('fee_staff',15,2)->nullable();
+            $table->decimal('fee_terapis',15,2)->nullable();
             $table->text('keterangan')->nullable();
             $table->integer('stok')->nullable();
             $table->integer('stok_max')->nullable();

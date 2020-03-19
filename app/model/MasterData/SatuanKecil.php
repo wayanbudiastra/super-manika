@@ -19,6 +19,6 @@ class SatuanKecil extends Model
 
     public function produk_item()
     {
-            return $this->belongsTo('App\model\MasterData\produkitem', 'satuan_kecil_id');
+            return $this->belongsTo('App\model\MasterData\ProdukItem', 'satuan_kecil_id');
     }
 }

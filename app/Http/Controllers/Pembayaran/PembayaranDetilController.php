@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Pembayaran;
 
 use App\model\MasterData\ProdukItem;
-use App\model\Inventory\Kartustok;
+use App\model\Inventory\KartuStok;
 use App\model\MasterData\Jasa;
 use App\model\TindakanItem;
 use App\model\Pembayaran\PembayaranDetil;
@@ -237,6 +237,7 @@ class PembayaranDetilController extends Controller
                 'pasien_net'=> 0,
                 'subtotal'=> $total,
                 'diskon' => $diskon,
+                'remember_token' => str_random(20),
                 'fee_staff'=> $findData->fee_staff,
                 'fee_dokter'=> $findData->fee_dokter,
                 'fee_asisten'=> $findData->fee_asisten,
@@ -255,7 +256,7 @@ class PembayaranDetilController extends Controller
             return response()->json([
                 'success' => false,
 
-                'message' => "Data Gagal di Input"
+                'message' => "Data Gagal di Input ".$e 
             ], 500);
         }
 

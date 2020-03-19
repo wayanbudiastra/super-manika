@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAjustment extends Migration
+class CreateKasManual extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,15 @@ class CreateAjustment extends Migration
      */
     public function up()
     {
-        Schema::create('ajustment', function (Blueprint $table) {
+        Schema::create('kas_manual', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('produk_id');
-            $table->date('tgl_ajustment');
-            $table->string('jenis_ajustment');
-            $table->integer('qty_in')->nullable();
-            $table->integer('qty_out')->nullable();
+            $table->integer('kas_id');
+            $table->string('transaksi');
+            $table->decimal('kas_masuk',15,2);
+            $table->decimal('kas_keluar',15,2);
             $table->text('keterangan')->nullable();
+            $table->integer('users_id');
+            $table->enum('aktif',['Y','N'])->default('Y');
             $table->timestamps();
         });
     }
@@ -32,6 +33,6 @@ class CreateAjustment extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ajustment');
+        Schema::dropIfExists('kas_manual');
     }
 }

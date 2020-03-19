@@ -34,10 +34,10 @@ class ProdukItemController extends Controller
     public function index()
     {
 
-        // $data = ProdukItem::max('kode');
+        $kd = ProdukItem::max('kode');
         // //dd($data);
 
-        // $kode = kode_item($data);
+        $kode = kode_item($kd);
         // return $kode;
         //return $data->kode;
         //
@@ -48,6 +48,7 @@ class ProdukItemController extends Controller
         
             return view('masterData.produkitem.index')->with([
                 'data'     => $row,
+                'kode'     => $kode,
                 'satuanbesar' => $satuanbesar,
                 'satuankecil' => $satuankecil,
                 'produkkatagori' => $produkkatagori,
@@ -55,6 +56,7 @@ class ProdukItemController extends Controller
                 'subtitle' => 'List Produk Item',
                 'no'       => '0',
             ]);
+       // dd($kode);
     }
 
     /**
@@ -97,6 +99,7 @@ class ProdukItemController extends Controller
                 <p>' . $message->first('harga_beli') . '</p>
                 <p>' . $message->first('harga_jual') . '</p>');
             }
+            $request->request->add(['stok'=> '0']);
             ProdukItem::create($request->all());
 
             return redirect('/produkitem')->with('sukses', 'Data Berhasil di input');
@@ -132,8 +135,13 @@ class ProdukItemController extends Controller
         // orWhere('nama_item', 'like', "%" . $cari . "%")->get();
 
         //dd($produkkatagori);
+        $kd = ProdukItem::max('kode');
+        // //dd($data);
+
+        $kode = kode_item($kd);
         return view('masterData.produkitem.index')->with([
                 'data'     => $data,
+                'kode' => $kode,
                 'satuanbesar' => $satuanbesar,
                 'satuankecil' => $satuankecil,
                 'produkkatagori' => $produkkatagori,

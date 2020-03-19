@@ -127,7 +127,7 @@
                                 <div class="form-group form-group-default">
                                     <label>Katagori</label>
                                     <select class="form-control" name="jasakatagori_id" required>
-                                        <option value="0">-</option>
+                                        <option value="1">-</option>
                                         @foreach($jasakatagori as $row)
                                             <option value="{{$row->id}}">{{$row->nama_jasakatagori}}</option>
                                         @endforeach
@@ -160,6 +160,13 @@
                               <div class="form-group form-group-default">
                                 <label>Fee Asisten</label>
                                 <input name="fee_asisten" type="text" class="form-control" placeholder="Fee Asisten">
+                              </div>
+                            </div>
+
+                            <div class="col-md-6">
+                              <div class="form-group form-group-default">
+                                <label>Fee Terapis</label>
+                                <input name="fee_terapis" type="text" class="form-control" placeholder="Fee Terapis">
                               </div>
                             </div>
                        

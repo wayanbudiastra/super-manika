@@ -419,7 +419,7 @@
 										</a>
 									</li>
 									<li>
-										<a href="{{url('/adjustment')}}">
+										<a href="{{url('/ajustment')}}">
 											<span class="sub-item">Adustment</span>
 										</a>
 									</li>
@@ -445,12 +445,12 @@
 										</a>
 									</li>
 									<li>
-										<a href="{{url('/kas/closing')}}">
+										<a href="{{url('/kas_closing')}}">
 											<span class="sub-item">Closing Kas</span>
 										</a>
 									</li>
 									<li>
-										<a href="{{url('/manualkas')}}">
+										<a href="{{url('/kas_manual')}}">
 											<span class="sub-item">Manual Kas</span>
 										</a>
 									</li>
