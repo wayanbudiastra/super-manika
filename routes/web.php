@@ -222,6 +222,7 @@ Route::group(['middleware'=> ['auth','checkRole:admin']],function(){
         Route::resource('kas_closing', 'KasClosingController');
         Route::get('kas_closing/{id}/edit', 'KasClosingController@edit');
         Route::post('kas_closing/{id}/update', 'KasClosingController@update');
+        Route::get('lanjut-closing/{id}','KasClosingController@lanjut_closing'); 
 
 
         //Pembayaran
@@ -236,6 +237,7 @@ Route::group(['middleware'=> ['auth','checkRole:admin']],function(){
         Route::get('load-modal-data-pembayaran/{id}', 'PembayaranController@showmodalAddpembayaran');
 
         //Pembayaran Detil
+        Route::resource('pembayaran_detil', 'PembayaranDetilController');
         Route::get('pembayaran_detil/{id}/edit', 'PembayaranDetilController@edit');
         Route::get('load-modal-data-create-transaksi/{id}', 'PembayaranDetilController@showmodalAddTransaksi');
         Route::get('load-modal-data-create-transaksi-tindakan/{id}', 'PembayaranDetilController@showmodalAddTransaksiTindakan');

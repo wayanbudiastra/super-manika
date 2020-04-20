@@ -81,7 +81,43 @@
 
                                     </div>
                                 </div>
+                                <hr>
+                                <div class="text-right">
+                                <h3>
+                                <table class="table" border="0">
+                                    <tr>
+                                        <td>Kas Awal</td>
+                                        <td width="15%">{{rupiah($kas->kas_awal)}}</td>
+                                    </tr>
+                                     <tr>
+                                        <td>Total Pembayaran</td>
+                                        <td>{{rupiah($total_pembayaran)}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Total Retail</td>
+                                        <td>-</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Total Manual Kas</td>
+                                        <td>{{rupiah($total_kasManual)}}</td>
+                                    </tr>
 
+                                    
+                                    <tr>
+                                        @php
+                                            $kas_akhir = $kas->kas_awal + $total_pembayaran + $total_kasManual;
+                                        @endphp
+                                        <td>Kas Akhir</td>
+                                        <td>{{rupiah($kas_akhir)}}</td>
+                                    </tr>
+                                    <tr>
+                                    <td colspan="2"> <button title="Simpan Closing Pembayaran" class="btn btn-success lanjut-closing" data-id="{{$kas->id}}">
+                                    <i class="fa fa-save"></i>Simpan</button></td>
+        
+                                    </tr>
+                                    </table>
+                                    </h3>
+                                </div>
 
                             </div>
                         </div>
@@ -113,50 +149,66 @@
                 });
                 $(document).ready(function () {
 
+                     $(document).on('click', '.lanjut-closing', function (event) {
+                        event.preventDefault();
+                        var $this = $(this);
+                        var id = $this.data('id');
 
-                    $('#basic-datatables').DataTable({});
+                        console.log(id);
 
-                    $('#multi-filter-select').DataTable({
-                        "pageLength": 5,
-                        initComplete: function () {
-                            this.api().columns().every(function () {
-                                var column = this;
-                                var select = $('<select class="form-control"><option value=""></option></select>')
-                                    .appendTo($(column.footer()).empty())
-                                    .on('change', function () {
-                                        var val = $.fn.dataTable.util.escapeRegex(
-                                            $(this).val()
-                                        );
 
-                                        column
-                                            .search(val ? '^' + val + '$' : '', true, false)
-                                            .draw();
-                                    });
-
-                                column.data().unique().sort().each(function (d, j) {
-                                    select.append('<option value="' + d + '">' + d + '</option>')
-                                });
-                            });
-                        }
-                    });
+                                swal({
+                                title: 'Apakah Anda Yakin Melajutkan Proses?',
+                                text: "Kas akan di closing - Transaksi tidak dapat di rubah!",
+                                type: 'warning',
+                                buttons:{
+                                         confirm: {
+                                         text : 'Yes, Lanjutkan!',
+                                         className : 'btn btn-success'
+                                      },
+                                cancel: {
+                                         visible: true,
+                                         className: 'btn btn-danger'
+                                        }
+                                     }
+                                }).then((willDelete) => {
+                                    if (willDelete) {
+                                        $.ajax({
+                                        url: '{!!  url('/'); !!}'+'/lanjut-closing/'+ id,
+                                        data: {
+                                        
+                                         },
+                                          type: 'GET',
+                                          success: function (response) {
+                                          swal(
+                                                'Input berhasil!',
+                                                'Closing kas Berhasil di simpan',
+                                                'success'
+                                            )
+                                           console.log(response);
+                                           //location.reload();
+                                           window.location = '{!!  url('/'); !!}'+'/kas_closing';  
+                                        },
+                                        error: function (response) {
+                                          var json_data = response;
+                                          console.log(json_data);
+                                            swal(
+                                                'Terjadi Kesalahan!',
+                                                'Silahkan ulangi lagi!',
+                                                    'error'
+                                                )
+                                            },
+                                         })
+                                    }
+                                })
+                  });
+                   
 
                     // Add Row
-                    $('#add-row').DataTable({
-                        "pageLength": 5,
-                    });
+                   
 
-                    var action = '<td> <div class="form-button-action"> <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit Task"> <i class="fa fa-edit"></i> </button> <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-danger" data-original-title="Remove"> <i class="fa fa-times"></i> </button> </div> </td>';
-
-                    $('#addRowButton').click(function () {
-                        $('#add-row').dataTable().fnAddData([
-                            $("#addName").val(),
-                            $("#addPosition").val(),
-                            $("#addOffice").val(),
-                            action
-                        ]);
-                        $('#addRowModal').modal('hide');
-
-                    });
+                  
+                    
                 });
             </script>
 @endsection

@@ -255,3 +255,22 @@ function nomor_regis($periode,$no_reg){
 
     return $noregis;
 }
+
+
+function total_pembayaran($data){
+    $total_pembayaran=0;
+    foreach($data as $k){
+        $total_pembayaran = $total_pembayaran + $k->total_transaksi;
+    }
+    return $total_pembayaran;
+
+
+}
+
+function total_kasManual($data){
+        $total_kasManual=0;
+    foreach($data as $k){
+        $total_kasManual = $total_kasManual   + $k->kas_masuk - $k->kas_keluar;
+    }
+    return $total_kasManual;
+    }

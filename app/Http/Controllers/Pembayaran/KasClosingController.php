@@ -84,18 +84,22 @@ class KasClosingController extends Controller
         $kas = Kas::find($id);
        // dd($kas->toArray());
         $pembayaran = Pembayaran::where('kas_id','=',$id)->get();
-        $kas_manual = Kas_manual::where('kas_id','=','id')->get();
+        $kas_manual = Kas_manual::where('kas_id','=',$id)->get();
        // dd($pembayaran->toArray());
 
-    //    $row = $this->kas->where('aktif','=','Y')->orderBy('id', 'desc')->paginate(30);
-        return view('pembayaran.kas_closing.closing')->with([
-               'pembayaran'             => $pembayaran->toArray(),
-               'kas_manual'             => $kas_manual->toArray(),
-               'title'            => 'Data Kas',
-               'subtitle'         => 'Proses Closing',
-               'no'               => '0',
-           ]);
 
+       $row = $this->kas->where('aktif','=','Y')->orderBy('id', 'desc')->paginate(30);
+        return view('pembayaran.kas_closing.closing')->with([
+               'pembayaran'             => $pembayaran,
+               'total_pembayaran'       => total_pembayaran($pembayaran),//ambil dari helper global
+               'kas_manual'             => $kas_manual,
+               'total_kasManual'        => total_kasManual($kas_manual),
+               'kas'                    => $kas,
+               'title'                  => 'Data Kas',
+               'subtitle'               => 'Proses Closing',
+               'no'                     => '0',
+           ]);
+       // dd($kas->toArray());
     }
 
     /**
@@ -105,19 +109,37 @@ class KasClosingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+   
+    public function lanjut_closing($id){
+      $kas = Kas::find($id);
+      $pembayaran = Pembayaran::where('kas_id','=',$id)->get();
+      $kas_manual = Kas_manual::where('kas_id','=',$id)->get();
+      $total_pembayaran = total_pembayaran($pembayaran);
+      $total_kasManual = total_kasManual($kas_manual);
+      $kas_akhir = $kas->kas_awal + $total_pembayaran + $total_kasManual;
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+      try{
+          $kas->update(['tgl_close' => date('Y-m-d'),
+          'total_transaksi' => $total_pembayaran,
+          'total_manualKas' => $total_kasManual,
+          'kas_akhir' => $kas_akhir,
+          'aktif' => 'N' ]);
+
+          //update pembayaran 
+        //   $pembayaran->update(['posting'=>'N']);
+        //   $kas_manual->update(['aktif' => 'N']);
+
+          
+         return response()->json([
+                'success' => true,
+                'message' => "Data Berhasil di input"
+            ], 200);
+
+         }catch(\Exception $e){
+          return response()->json([
+                'success' => false,
+                'message' => $e
+            ], 500);
+      }
     }
 }
