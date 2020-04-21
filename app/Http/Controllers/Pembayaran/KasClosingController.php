@@ -126,15 +126,14 @@ class KasClosingController extends Controller
           'aktif' => 'N' ]);
 
           //update pembayaran 
-        //   $pembayaran->update(['posting'=>'N']);
-        //   $kas_manual->update(['aktif' => 'N']);
-
+        $updatePembayaran = Pembayaran::where('kas_id','=',$id)->update(['aktif'=>'N']);
+        $updateKasManual = Kas_manual::where('kas_id','=',$id)->update(['aktif'=>'N']);
           
          return response()->json([
                 'success' => true,
                 'kas' => $kas,
-                'kas_manual' => $kas_manual,
-                'total_manualKas' => $total_kasManual,
+                'updatePembayaran' => $updatePembayaran,
+                'updateKasManual' => $updateKasManual,
                 'message' => "Data Berhasil di input"
             ], 200);
 
