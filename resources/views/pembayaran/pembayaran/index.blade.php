@@ -159,7 +159,9 @@ $(document).ready(function() {
                                                 'success'
                                             )
                                            console.log(response);
-                                            location.reload();  
+                                            //location.reload();  
+
+                                            window.location = '{!!  url('/'); !!}'+'/pembayaran_detil';
 
                                         },
                               error: function (response) {
@@ -171,6 +173,9 @@ $(document).ready(function() {
                                                 'Silahkan lakukan open kas telebih dahulu.',
                                                     'error'
                                                 )
+
+
+
 },
 
                                     })

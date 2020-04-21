@@ -24,6 +24,10 @@ class Kas extends Model
             'total_kembali',
             'kas_akhir',
             'keterangan',
-            'aktif'
+            'aktif',
+    
+            'total_manualKas',
+            'total_retail',
+            'total_outstanding'
         ];
 }

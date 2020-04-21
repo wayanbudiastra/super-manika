@@ -133,6 +133,8 @@ class KasClosingController extends Controller
          return response()->json([
                 'success' => true,
                 'kas' => $kas,
+                'kas_manual' => $kas_manual,
+                'total_manualKas' => $total_kasManual,
                 'message' => "Data Berhasil di input"
             ], 200);
 

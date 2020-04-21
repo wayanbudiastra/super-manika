@@ -266,8 +266,8 @@
                                                 'Data Berhasil '+jenis+'.',
                                                 'success'
                                             )
-                                            $('#reloadpaginate').load('{!!  url('/'); !!}'+"/pembayaran_detil/" + '{!! Crypt::encrypt($data->id) !!}' + "/edit");
-
+                                            //$('#reloadpaginate').load('{!!  url('/'); !!}'+"/pembayaran_detil/" + '{!! Crypt::encrypt($data->id) !!}' + "/edit");
+                                            window.location = '{!!  url('/'); !!}'+'/pembayaran/show';
                                         },
                                         error: function (response) {
 

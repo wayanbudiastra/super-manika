@@ -185,9 +185,9 @@
                                                 'Closing kas Berhasil di simpan',
                                                 'success'
                                             )
+                                           
+                                          // window.location = '{!!  url('/'); !!}'+'/kas_closing';  
                                            console.log(response);
-                                           //location.reload();
-                                           window.location = '{!!  url('/'); !!}'+'/kas_closing';  
                                         },
                                         error: function (response) {
                                           var json_data = response;
