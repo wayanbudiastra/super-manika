@@ -115,6 +115,8 @@ Route::group(['middleware'=> ['auth','checkRole:admin']],function(){
     Route::post('/registrasi/cencel/{id}','Registrasi1Controller@cencel');                     
     Route::post('/registrasi/{id}/update','Registrasi1Controller@update');
 
+    Route::resource('registrasi_retail', 'Registrasi\RegistrasiRetailController');
+
 
 
      Route::group(['namespace' => 'MasterData'], function () {

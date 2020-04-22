@@ -186,8 +186,8 @@
                                                 'success'
                                             )
                                            
-                                          // window.location = '{!!  url('/'); !!}'+'/kas_closing';  
-                                           console.log(response);
+                                           window.location = '{!!  url('/'); !!}'+'/kas_closing';  
+                                           //console.log(response);
                                         },
                                         error: function (response) {
                                           var json_data = response;
