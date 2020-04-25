@@ -2,6 +2,7 @@
 use App\model\pasien;
 use App\model\lokasi;
 use App\model\Registrasi1;
+use App\model\Registrasi_retail;
 //use Session;
 
 function nama_lokasi(){
@@ -108,7 +109,16 @@ function maxnocm(){
     return $kd;
 }
 
+function info_pasien_nama($id){
+   
+    $hasil = Pasien::find($id);
+    return $data = $hasil->nama;
+}
 
+function info_pasien_tgl_lahir($id){
+    $hasil = Pasien::find($id);
+    return $data = $hasil->tgl_lahir;
+}
 
 function hitung_usia($tgl)
     {
@@ -203,6 +213,24 @@ if($q!="")
 return $noreg;
 }
 
+function max_noreg_retail(){
+//$periode = $per;
+$q = Registrasi_retail::max('no_registrasi');
+$kd = "";
+if($q!="")
+    {
+    $tmp =((int)$q)+1;
+    $d =sprintf("%07s", $tmp);        
+    $kd = $d;
+    $noreg = $kd;
+    }
+    else
+    {
+    $noreg = "0000001";
+    }   
+return $noreg;
+}
+
 function kode_item($kode){
     // buat kode Item
  if(!!$kode){
@@ -252,7 +280,11 @@ function nomor_invoice($kode){
 
 function nomor_regis($periode,$no_reg){
     $noregis = "REG-".$periode."-".$no_reg;
+    return $noregis;
+}
 
+function nomor_regis_retail($periode,$no_reg){
+    $noregis = "RTL-".$periode."-".$no_reg;
     return $noregis;
 }
 

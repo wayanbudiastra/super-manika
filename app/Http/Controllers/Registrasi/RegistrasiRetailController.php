@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Registrasi;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\model\Pasien;
+use App\model\Registrasi_retail;
 
 class RegistrasiRetailController extends Controller
 {
@@ -15,7 +17,10 @@ class RegistrasiRetailController extends Controller
     public function index()
     {
         //
-        return "Hello Word";
+        return view('registrasi.retail.add_reg_retail',[
+            'title' => 'Registrasi Retail',
+            'subtitle' => 'Add Registrasi Retail'
+        ]);
     }
 
     /**
@@ -23,9 +28,13 @@ class RegistrasiRetailController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function ajax_pasien()
     {
         //
+        $pasien = Pasien::where('aktif','=','Y')->get();
+        //dd($pasien);
+        return response()->json($pasien);
+        // return reponse(['data'=>$pasien]);
     }
 
     /**
@@ -37,6 +46,20 @@ class RegistrasiRetailController extends Controller
     public function store(Request $request)
     {
         //
+        try{
+            $per = GetPeriode();
+            $request->request->add([
+                                'tgl_reg'=> date('Y-m-d'),
+                                'users_id' => auth()->user()->id,
+                                'periode' => $per]);
+           // dd($request->all());
+             $registrasi_retail = Registrasi_retail::create($request->all());
+             return redirect('/registrasi_retail/list')->with('sukses', 'Data Berhasil di input');
+        }catch(\Exception $e){
+            return redirect('/registrasi_retail/list')->with('gagal', 'Data Gagal di input ' .$e);
+        }
+        
+        
     }
 
     /**
@@ -45,9 +68,20 @@ class RegistrasiRetailController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
         //
+        
+        $data = Registrasi_retail::where('aktif','=','Y')->get();
+        // //dd(info_pasien_nama(1));
+        // $data = info_pasien_nama(1);
+       
+         return view('registrasi.retail.index',[
+            'title' => 'Registrasi Retail',
+            'subtitle' => 'List Registrasi Retail',
+            'data' => $data,
+            'no' => 0
+        ]);
     }
 
     /**

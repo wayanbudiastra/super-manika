@@ -25,7 +25,6 @@ class Kas extends Model
             'kas_akhir',
             'keterangan',
             'aktif',
-    
             'total_manualKas',
             'total_retail',
             'total_outstanding'

@@ -116,6 +116,8 @@ Route::group(['middleware'=> ['auth','checkRole:admin']],function(){
     Route::post('/registrasi/{id}/update','Registrasi1Controller@update');
 
     Route::resource('registrasi_retail', 'Registrasi\RegistrasiRetailController');
+    Route::get('ajax-get-pasien','Registrasi\RegistrasiRetailController@ajax_pasien');
+    Route::get('registrasi_retail/list','Registrasi\RegistrasiRetailController@list');
 
 
 

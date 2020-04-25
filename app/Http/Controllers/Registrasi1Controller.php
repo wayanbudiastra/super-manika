@@ -28,7 +28,7 @@ class Registrasi1Controller extends Controller
         //
          $data= Pasien::orderby('nocm','DESC')->paginate(200);
        // dd($data);
-       return view('registrasi.index',['data'=>$data,'no'=>0,'subtitle'=>'Pasien List','title'=>'Registrasi Pasien']); 
+        return view('registrasi.index',['data'=>$data,'no'=>0,'subtitle'=>'Pasien List','title'=>'Registrasi Pasien']); 
     }
 
      public function cari(Request $request)
@@ -41,9 +41,12 @@ class Registrasi1Controller extends Controller
         }else{
 
         // mengambil data dari table pegawai sesuai pencarian data
-        $data = Pasien::where('nama', 'like', "%" . $cari . "%")->
+            $data = Pasien::where('nama', 'like', "%" . $cari . "%")->
                 orWhere('nocm', 'like', "%" . $cari . "%")->get();
-         return view('registrasi.index', ['data' => $data, 'no' => 0, 'subtitle' => 'Pasien List', 'title' => 'Registrasi Pasien']); 
+                return view('registrasi.index', ['data' => $data,
+                'no' => 0, 
+                'subtitle' => 'Pasien List',
+                'title' => 'Registrasi Pasien']); 
             }
     }
 

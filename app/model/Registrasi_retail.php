@@ -8,5 +8,17 @@ class Registrasi_retail extends Model
 {
     //
     protected $table = 'registrasi_retail';
-    protected $fillable = [];
+    protected $fillable = ['id',
+    'no_registrasi',
+    'pasien_id',
+    'jenis_registrasi_retail_id',
+    'tgl_reg',
+    'periode',
+    'keterangan',
+    'aktif',
+    'iscencel',
+    'users_id',
+    'created_at',
+    'update_at'];
+    
 }
