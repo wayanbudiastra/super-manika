@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\model\Pasien;
 use App\model\Registrasi_retail;
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Validator;
 
 class RegistrasiRetailController extends Controller
 {
@@ -93,28 +95,51 @@ class RegistrasiRetailController extends Controller
     public function edit($id)
     {
         //
+        $idx = Crypt::decrypt($id);
+        $data = Registrasi_retail::find($idx);
+        $pasien = Pasien::where('aktif','=','Y')->get();
+       
+         return view('registrasi.retail.edit_reg_retail',[
+            'title' => 'Registrasi Retail',
+            'subtitle' => 'Edit Registrasi Retail',
+            'data' => $data,
+            'pasien' => $pasien
+        ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function update(Request $request, $id)
     {
-        //
+       try {
+                $validator = Validator::make(request()->all(), [
+                    'pasien_id' => 'required',
+                    'jenis_registrasi_retail_id'   => 'required',
+                ]);
+
+                if ($validator->fails()) {
+                    $message = $validator->errors();
+                    return redirect('/registrasi_retail/list')->with('gagal',
+                        '<p>' . $message->first('pasien_id') . '</p>
+                         <p>' . $message->first('jenis_registrasi_retail_id') . '</p>'
+                    );
+                }
+                $data = Registrasi_retail::find($id);
+                $data->update($request->all());
+                return redirect('/registrasi_retail/list')->with('sukses', 'Data Berhasil di Edit');
+            } catch (\Exception $e) {
+                // store errors to log
+                \Log::error('class : ' . SpesialisController::class . ' method : edit | ' . $e);
+
+                return redirect('/registrasi_retail/list')->with('gagal', 'Data Gagal di Edit');
+            }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+   
+    public function cencel_ajax($id)
     {
         //
+        $data = Registrasi_retail::find($id);
+        $data->update(['iscencel'=>'Y','aktif'=>'N']);
+         return response()->json($data);
     }
 }

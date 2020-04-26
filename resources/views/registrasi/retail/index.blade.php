@@ -94,7 +94,10 @@
                             <td>{{$tgl_lahir}}</td>
                             <!-- <td>{{hitung_usia($k->tgl_lahir)}}</td> -->
                             <td>{{$k->keterangan}}</td>
-                            <td><a href="{{url('/registrasi_retail/'.$id.'/edit')}}" class="btn btn-warning btn-xs"> <i class="flaticon-right-arrow"></i>Edit</a></td>
+                            <td><a title="Edit Registrasi Retail" href="{{url('/registrasi_retail/'.$id.'/edit')}}" class="btn btn-warning btn-xs"><i class="fa fa-book"></i></a>
+                                 <button title="Cencel Registrasi Retail" class="btn btn-danger btn-xs cencel"  data-id="{{$k->id}}">
+                                  <i class="fa fa-trash"></i></button>
+                            </td>
                             </tr>
                             
                             @endforeach
@@ -111,41 +114,7 @@
 </div>
 
 
-        <div class="modal fade" id="addRowModal" tabindex="-1" role="dialog" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                      <div class="modal-content">
-                        <div class="modal-header no-bd">
-                          <h5 class="modal-title">
-                            <span class="fw-light">
-                             {{$title}}
-                            </span>
-                          </h5>
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                        </div>
-                        <div class="modal-body">
-                         
-                          <form action="{{url('/registrasi/cari')}}" method="POST" enctype="multipart/form-data">
-                             {{csrf_field()}}
-                            <div class="row">
-                              <div class="col-md-10 pr-0">
-                                <div class="form-group form-group-default">
-                                  <label>Nama Pasien/ No CM</label>
-                                  <input name="cari" type="text" class="form-control" placeholder="cari nama / no CM">
-                                </div>
-                              </div>
-                            </div>
-                         
-                        </div>
-                        <div class="modal-footer no-bd">
-                          <button type="submit"  class="btn btn-primary">Cari</button>
-                          <button type="button" class="btn btn-danger" data-dismiss="modal">Tutup</button>
-                        </div>
-                      </div>
-                       </form>
-                    </div>
-                  </div>
+       
 <!-- TES -->
 
 
@@ -157,62 +126,56 @@ $(document).ready(function() {
       $('#basic-datatables').DataTable({
       });
 
-// $(document).ready(function() {
-//     $('#datatable').DataTable({
-//         processing:true,
-//         serverside:true,
-//         ajax:"{{route('ajax.get.data.pasien')}}",
-//         columns:[
-//             {data:'nocm',name:'nocm'},
-//             {data:'nama',name:'nama'},
-//             {data:'tanggal_indo',name:'tanggal_indo'},
-//             {data:'alamat',name:'alamat'},
-//             {data:'pekerjaan',name:'pekerjaan'}
-//         ]
-//     })
-// });
+      $(document).on('click', '.cencel', function (event) {
+                        event.preventDefault();
+                        var $this = $(this);
+                        var id = $this.data('id');
+                        console.log(id);
+                 swal({
+                  title: 'Apakah Anda Yakin Melajutkan proses?',
+                  text: "Registrasi akan di batalkan!",
+                  type: 'warning',
+                  buttons:{
+                  confirm: {
+                          text : 'Yes, Lanjutkan!',
+                          className : 'btn btn-success'
+                          },
+                  cancel: {
+                          visible: true,
+                          className: 'btn btn-danger'
+                         }
+                         }
+                 }).then((willDelete)=>{
+                      if (willDelete) {
+                           $.ajax({
+                            url: '{!!  url('/'); !!}'+'/cencel-registrasi-retail/'+ id,
+                            data: {},
+                            type: 'GET',
+                            success: function (response) {
+                               swal(
+                                      'Proses berhasil!',
+                                      'success')
+                                           console.log(response);
+                                            //location.reload();  
+                                            window.location = '{!!  url('/'); !!}'+'/registrasi_retail/list';
 
-  $('#multi-filter-select').DataTable( {
-        "pageLength": 5,
-        initComplete: function () {
-          this.api().columns().every( function () {
-            var column = this;
-            var select = $('<select class="form-control"><option value=""></option></select>')
-            .appendTo( $(column.footer()).empty() )
-            .on( 'change', function () {
-              var val = $.fn.dataTable.util.escapeRegex(
-                $(this).val()
-                );
+                                        },
+                              error: function (response) {
+                                          var json_data = response;
+                                          console.log(json_data);
 
-              column
-              .search( val ? '^'+val+'$' : '', true, false )
-              .draw();
-            } );
-
-            column.data().unique().sort().each( function ( d, j ) {
-              select.append( '<option value="'+d+'">'+d+'</option>' )
-            } );
-          } );
-        }
+                                            swal(
+                                                'Terjadi Kesalahan!',
+                                                'Silahkan coba lagi',
+                                                    'error'
+                                                )
+                              }
+                     
+                  });
+                }
+            });
       });
-
-      // Add Row
-      $('#add-row').DataTable({
-        "pageLength": 5,
-      });
-
-      var action = '<td> <div class="form-button-action"> <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit Task"> <i class="fa fa-edit"></i> </button> <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-danger" data-original-title="Remove"> <i class="fa fa-times"></i> </button> </div> </td>';
-
-      $('#addRowButton').click(function() {
-        $('#add-row').dataTable().fnAddData([
-          $("#addName").val(),
-          $("#addPosition").val(),
-          $("#addOffice").val(),
-          action
-          ]);
-        $('#addRowModal').modal('hide');
-
-      });
+    
     });
 </script>
 @endsection

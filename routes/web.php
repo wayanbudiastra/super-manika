@@ -90,16 +90,16 @@ Route::group(['middleware'=> ['auth','checkRole:admin']],function(){
     Route::get('/tindakan/{id}/edit', 'TindakanController@edit');
     Route::post('/tindakan/{id}/update', 'TindakanController@update');
 
-    Route::get('/karyawan', 'KaryawanController@index');
-    Route::post('/karyawan', 'KaryawanController@store');
-    //Route::post('/karyawan/create', 'KaryawanController@create');
-    Route::get('/karyawan/{id}/edit', 'KaryawanController@edit');
-    Route::post('/karyawan/{id}/update', 'KaryawanController@update');
+    // Route::get('/karyawan', 'KaryawanController@index');
+    // Route::post('/karyawan', 'KaryawanController@store');
+    // //Route::post('/karyawan/create', 'KaryawanController@create');
+    // Route::get('/karyawan/{id}/edit', 'KaryawanController@edit');
+    // Route::post('/karyawan/{id}/update', 'KaryawanController@update');
 
-    Route::get('/itemmedis', 'ItemMedisController@index');
-    Route::post('/itemmedis/create', 'ItemMedisController@create');
-    Route::get('/itemmedis/{id}/edit', 'ItemMedisController@edit');
-    Route::post('/itemmedis/{id}/update', 'ItemMedisController@update');
+    // Route::get('/itemmedis', 'ItemMedisController@index');
+    // Route::post('/itemmedis/create', 'ItemMedisController@create');
+    // Route::get('/itemmedis/{id}/edit', 'ItemMedisController@edit');
+    // Route::post('/itemmedis/{id}/update', 'ItemMedisController@update');
 
     Route::get('/registrasi','Registrasi1Controller@index');
     Route::get('/registrasi/cek','Registrasi1Controller@cek');
@@ -118,7 +118,8 @@ Route::group(['middleware'=> ['auth','checkRole:admin']],function(){
     Route::resource('registrasi_retail', 'Registrasi\RegistrasiRetailController');
     Route::get('ajax-get-pasien','Registrasi\RegistrasiRetailController@ajax_pasien');
     Route::get('registrasi_retail/list','Registrasi\RegistrasiRetailController@list');
-
+    Route::get('cencel-registrasi-retail/{id}','Registrasi\RegistrasiRetailController@cencel_ajax'); 
+    Route::post('registrasi_retail/{id}/update', 'Registrasi\RegistrasiRetailController@update');
 
 
      Route::group(['namespace' => 'MasterData'], function () {
