@@ -110,7 +110,6 @@ function maxnocm(){
 }
 
 function info_pasien_nama($id){
-   
     $hasil = Pasien::find($id);
     return $data = $hasil->nama;
 }
