@@ -2,6 +2,11 @@
 
 namespace App\Http\Controllers\Pembayaran;
 
+use  App\User;
+use App\model\Pembayaran\Kas;
+use App\model\Pembayaran\Pembayaran_retail;
+use App\model\Pembayaran\Pembayaran_retail_detil;
+use \App\model\Registrasi_retail;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -15,6 +20,13 @@ class PembayaranRetailController extends Controller
     public function index()
     {
         //
+        $data = Registrasi_retail::where([['aktif','=','Y'],['iscencel','=','N']])->get();
+        //dd($data);
+       
+        return view('pembayaran.pembayaran_retil.index',['data' => $data,'no' => 0,
+            'subtitle'=>'Data Registrasi',
+            'title'=>'List Registrasi Pasien']);
+       
     }
 
     /**

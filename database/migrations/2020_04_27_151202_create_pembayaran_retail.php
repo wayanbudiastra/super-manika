@@ -16,7 +16,7 @@ class CreatePembayaranRetail extends Migration
         Schema::create('pembayaran_retail', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('kas_id');
-            $table->integer('registrasi_id');
+            $table->integer('registrasi_retail_id');
             $table->string('no_invoice')->nullable();
             $table->date('tgl_pembayaran');
             $table->decimal('total_transaksi', 15,2);
