@@ -16,10 +16,10 @@ class AuthController extends Controller
     public function postlogin(Request $request){
        // dd($request->all());
        if(Auth::attempt($request->only('email','password'))){
-           return redirect('/dashboard');
+           return redirect('/dashboard')->with('sukses', 'Behasil Login');
           // return 'login berhasil';
        }
-       return redirect('/');
+       return redirect('/')->with('sukses', 'Terjadi kesalahan, username / password tidak sesuai');
     }
 
     public function postlokasi(Request $request)

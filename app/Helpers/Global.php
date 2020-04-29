@@ -119,6 +119,24 @@ function info_pasien_tgl_lahir($id){
     return $data = $hasil->tgl_lahir;
 }
 
+function info_reg_retail(){
+    $hasil = Registrasi_retail::where('tgl_reg',date('Y-m-d'))->count();
+    return $data = $hasil;
+}
+
+function info_reg_pasien_baru(){
+    
+    return $hasil = Registrasi1::where([['jenis_registrasi_id',1],
+    ['tgl_reg',date('Y-m-d')]])->count();
+     
+}
+function info_reg_pasien_lama(){
+    
+    return $hasil = Registrasi1::where([['jenis_registrasi_id',2],
+    ['tgl_reg',date('Y-m-d')]])->count();
+     
+}
+
 function hitung_usia($tgl)
     {
         $tgl_lahir = date($tgl);

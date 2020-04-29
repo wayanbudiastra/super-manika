@@ -117,7 +117,9 @@ class Registrasi1Controller extends Controller
         $request->request->add(['no_registrasi' => max_noreg(),
                                 'tgl_reg'=> date('Y-m-d'),
                                 'users_id' => auth()->user()->id,
-                                'periode' => $per]);
+                                'periode' => $per,
+                                'jenis_registrasi_id'=> 2]);
+        //registrasi 2 reg pasien lama
          //dd($request->all());
          $data = Registrasi1::create($request->all());
           return redirect('/registrasi/list')->with('sukses', 'Data Berhasil di input');
@@ -160,6 +162,7 @@ class Registrasi1Controller extends Controller
         $registrasi->tgl_reg = date('Y-m-d');
         $registrasi->users_id = auth()->user()->id;
         $registrasi->periode = $per;
+        $registrasi->jenis_registrasi_id = 1;
         $registrasi->save();
         //dd($registrasi);
         return redirect('/registrasi/list')->with('sukses', 'Data Berhasil di input');
