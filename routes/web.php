@@ -241,6 +241,7 @@ Route::group(['middleware'=> ['auth','checkRole:admin']],function(){
         Route::post('pembayaran-simpam-invoice','PembayaranController@SimpanInvoice'); 
         Route::get('load-modal-data-pembayaran/{id}', 'PembayaranController@showmodalAddpembayaran');
 
+
         //Pembayaran Detil
         Route::resource('pembayaran_detil', 'PembayaranDetilController');
         Route::get('pembayaran_detil/{id}/edit', 'PembayaranDetilController@edit');
@@ -255,7 +256,31 @@ Route::group(['middleware'=> ['auth','checkRole:admin']],function(){
         Route::post('posting-pembayaran-detail/{id}', 'PembayaranDetilController@Posting');
         Route::get('pembayaran_detil/printprev/{id}', 'PembayaranDetilController@printprev');
 
+        //Pembayaran Retail
+        Route::resource('pembayaran_retil', 'PembayaranRetailController');
+        Route::get('pembayaran_retil/{id}/edit', 'PembayaranRetailController@edit');
+        Route::post('pembayaran_retil/{id}/update', 'PembayaranRetailController@update');
+        Route::post('pembayaran_retil/lanjut/{id}', 'PembayaranRetailController@lanjut');
+        Route::get('pembayaran_retil/show', 'PembayaranRetailController@show');
+        Route::get('pembayaran_retil/proses', 'PembayaranRetailController@proses');
+        Route::get('lanjut-pembayaran-retil/{id}','PembayaranRetailController@lanjut_ajax'); 
+        Route::post('pembayaran_retil-simpam-invoice','PembayaranRetailController@SimpanInvoice'); 
+        Route::get('load-modal-data-pembayaran_retil/{id}', 'PembayaranRetailController@showmodalAddpembayaran');
 
+
+        //Pembayaran Retail Detil
+        Route::resource('pembayaran_retail_detil', 'PembayaranRetailDetailController');
+        Route::get('pembayaran_retail_detil/{id}/edit', 'PembayaranRetailDetailController@edit');
+        Route::get('load-modal-data-create-transaksi-retail/{id}', 'PembayaranRetailDetailController@showmodalAddTransaksi');
+        Route::get('load-modal-data-create-transaksi-tindakan-retail/{id}', 'PembayaranRetailDetailController@showmodalAddTransaksiTindakan');
+        Route::get('load-modal-item-by-add-transaksi-retail', 'PembayaranRetailDetailController@ShowModalItemByAddTransaksi');
+        Route::get('load-modal-item-by-add-transaksi-tindakan-retail', 'PembayaranRetailDetailController@ShowModalItemByAddTransaksiTindakan');
+        Route::post('pembayaran-detil', 'PembayaranRetailDetailController@AddPembayaranDetail');
+     //   Route::get('pembayaran_retail_detil/', 'PembayaranRetailDetailController@index');
+        Route::post('pembayaran_retail_detil/{id}/update', 'PembayaranRetailDetailController@update');
+        Route::post('hapus-pembayaran-retail-detail/{id}', 'PembayaranRetailDetailController@DeletePembayaranDetail');
+        Route::post('posting-pembayaran-retail-detail/{id}', 'PembayaranRetailDetailController@Posting');
+        Route::get('pembayaran_retail_detil/printprev/{id}', 'PembayaranRetailDetailController@printprev');
          //Invoice
         Route::resource('invoice', 'InvoiceController');
         Route::get('invoice/show/{id}', 'InvoiceController@show');

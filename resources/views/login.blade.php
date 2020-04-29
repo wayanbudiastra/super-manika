@@ -41,11 +41,11 @@
 					</span>
 					
 					 <div class="box-body">
-         			@if(session('sukses'))
+         			  @if(session('sukses'))
 						<div class="alert alert-danger" role="alert">
 							{{session('sukses')}}
 						</div>
-					@endif
+					 @endif
 					 </div>
 						<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
 						<input class="input100" type="text" name="email">

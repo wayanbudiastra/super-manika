@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Pembayaran;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\model\Pembayaran\Pembayaran_retail;
+use App\model\Pembayaran\Pembayaran_retail_detail;
 
 class PembayaranRetailDetailController extends Controller
 {
@@ -15,6 +17,13 @@ class PembayaranRetailDetailController extends Controller
     public function index()
     {
         //
+         $data = Pembayaran_retail::where('posting', 'N')->orderby('id','desc')->get();
+         dd($data);
+
+        // return view('pembayaran.pembayaran_detail_retail.index', ['data' => $data, 'no' => 0,
+        //    'subtitle' => 'Data Pembayaran',
+        //    'title' => 'List Pembayaran Pasien']);
+        
     }
 
     /**

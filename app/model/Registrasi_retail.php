@@ -20,5 +20,10 @@ class Registrasi_retail extends Model
     'users_id',
     'created_at',
     'update_at'];
+
+    public function pembayaran_retail()
+    {
+    	return $this->hasOne('App\model\Pembayaran\Pembayaran_retail');
+    }
     
 }

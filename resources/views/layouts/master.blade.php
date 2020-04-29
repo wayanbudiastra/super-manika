@@ -516,17 +516,17 @@
 													</a>
 												</li>
 												<li>
-													<a href="{{url('/pembayaran_retil_detil')}}">
+													<a href="{{url('/pembayaran_retail_detil')}}">
 														<span class="sub-item">On Proses</span>
 													</a>
 												</li>
 												<li>
-													<a href="{{url('/pembayaran_retil/show')}}">
+													<a href="{{url('/pembayaran_retail/show')}}">
 														<span class="sub-item">List Pembayaran</span>
 													</a>
 												</li>
 												<li>
-													<a href="{{url('/invoice_retil')}}">
+													<a href="{{url('/invoice_retail')}}">
 														<span class="sub-item">List Invoice</span>
 													</a>
 												</li>
