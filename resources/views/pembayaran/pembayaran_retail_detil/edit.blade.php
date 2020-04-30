@@ -235,7 +235,7 @@
                             .then((willDelete) => {
                                 if (willDelete) {
                                     $.ajax({
-                                        url: '{!!  url('/'); !!}'+'/posting-pembayaran-detail-retail/' + id,
+                                        url: '{!!  url('/'); !!}'+'/posting-pembayaran-retail-detail/' + id,
                                         data: {
                                             "id": id,
                                             "value": value,
@@ -250,7 +250,7 @@
                                                 'success'
                                             )
                                             //$('#reloadpaginate').load('{!!  url('/'); !!}'+"/pembayaran_detil/" + '{!! Crypt::encrypt($data->id) !!}' + "/edit");
-                                            window.location = '{!!  url('/'); !!}'+'/pembayaran/show';
+                                            window.location = '{!!  url('/'); !!}'+'/pembayaran_retail/show';
                                         },
                                         error: function (response) {
 

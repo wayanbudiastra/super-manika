@@ -37,59 +37,12 @@ class PembayaranController extends Controller
 
         $data = Registrasi1::find($id);
         dd($data);
-       //  $user = auth()->user()->id;
-       //  $cek = Kas::where([
-       //      ['users_id','=',$user],
-       //      ['tgl_open','=',date("Y-m-d")],
-       //  ])->get();
-       // //cek apakah sudah melakukan open kas di hari tersebut
-       // if($cek->first()){
-       //    try{
-       //      $pembayaran = new Pembayaran;
-       //      $pembayaran->tgl_pembayaran = date("Y-m-d");
-       //      $pembayaran->kas_id = $cek->first()->id;
-       //      $pembayaran->registrasi1_id = $request->id;
-       //      $pembayaran->total_transaksi = 0;
-       //      $pembayaran->total_diskon = 0;
-       //      $pembayaran->total_kembali = 0;
-       //      $pembayaran->total_pembayaran = 0;
-       //      $pembayaran->kurang_bayar = 0;
-       //      $pembayaran->invoice = 0;
-       //      $pembayaran->posting = 'N';
-       //      $pembayaran->aktif = 'Y';
-       //      $pembayaran->cencel = 'N';
-       //      $pembayaran->closing = 'N';
-       //      $pembayaran->users_id = $user;
-       //      $pembayaran->save();
-
-       //      $data = Registrasi1::find($request->id);
-       //      $request->request->add(['aktif'=>'N']);
-       //      $data->update($request->all());
-       //      //$id = Crypt::encrypt($pembayaran->id);
-            
-       //      return redirect('/pembayaran_detil')->with('sukses', 'Data berhasil di input');
-       //      //dd($pembayaran);
-       //      } catch (\Exception $e) {
-       //      // store errors to log
-       //       \Log::error('class : '. PembayaranController::class . ' method : create | '. $e);
-       //      return redirect('/pembayaran')->with('gagal', 'Data Gagal di input');
-       //     }       
-       // }
-       // else{
-       //  return redirect('/pembayaran')->with('gagal', 'Silahkan melakukan open kas terlebih dahulu..!');
-       // }    
+     
     }
 
      public function lanjut_ajax($id){
 
-      //  $data = Registrasi1::find($id);
-       // dd($data);
-
-         // return response()->json([
-         //        'success' => true,
-         //        'data' => $data,
-         //        'message' => "Data Berhasil di input"
-         //    ], 200);
+    
         $user = auth()->user()->id;
         $tgl_open =  date("Y-m-d");
         $cek = Kas::where([
