@@ -171,7 +171,7 @@ $(document).ready(function() {
                                            console.log(response);
                                             //location.reload();  
 
-                                            window.location = '{!!  url('/'); !!}'+'/pembayaran_detil';
+                                            window.location = '{!!  url('/'); !!}'+'/pembayaran_retail_detil';
 
                                         },
                               error: function (response) {

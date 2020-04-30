@@ -57,10 +57,10 @@
                        <tr>
                         <th>No</th>
                         <th>No Reg</th>
+                        <th>Type Registrasi</th>
                         <th>Nama Pasien</th>
-                        <th>Dokter</th>
-                        <th>Poli</th>
-                        <!-- <th>Usia</th> -->
+                       
+                        <th>tgl Lahir</th>
                         <th>Tgl Reg</th>
                         <th>Aksi</th>
                         </tr>
@@ -68,17 +68,36 @@
                      
                       <tbody>
                         @foreach($data as $k)
+                         @php
+                                $type_pasien ="";
+                                $nama_pasien ="";
+                                $tgl_lahir = "";
+                            @endphp
+
                             <?php $id = Crypt::encrypt($k->id); ?>
+
+                             @php
+                                if($k->registrasi_retail->jenis_registrasi_retail_id=='umum'){
+                                    $type_pasien = 'umum';
+                                    $nama_pasien = 'umum';
+                                    $tgl_lahir = "-";
+                                }else{
+                                    $type_pasien = 'pasien';
+                                     $nama_pasien = info_pasien_nama($k->registrasi_retail->pasien_id);
+                                    $tgl_lahir = tgl_indo(info_pasien_tgl_lahir($k->registrasi_retail->pasien_id));
+                                }
+                            @endphp
                             <tr>
                             <td>{{$no=$no+1}}</td>
-                            <td>{{$k->registrasi1->no_registrasi}}</td>
-                            <td>{{$k->registrasi1->pasien->nama}}</td>
-                            <td>{{$k->registrasi1->dokter->nama_dokter}}</td>
-                            <td>{{$k->registrasi1->poli->nama_poli}}</td>
+                            <td>{{$k->registrasi_retail->no_registrasi}}</td>
+                            <td>{{$type_pasien}}</td>
+                            <td>{{$nama_pasien}}</td>
+                            <td>{{$tgl_lahir}}</td>
+                            <td>{{$k->keterangan}}</td>
                             <!-- <td>{{hitung_usia($k->tgl_lahir)}}</td> -->
-                            <td>{{tgl_indo($k->registrasi1->tgl_reg)}}</td>
+                            <td>{{tgl_indo($k->registrasi_retail->tgl_reg)}}</td>
                             <td>
-                             <a href="{{url('/pembayaran_detil/'.$id.'/edit')}}"
+                             <a href="{{url('/pembayaran_retail_detil/'.$id.'/edit')}}"
                                                                class="btn btn-success btn-xs">Add Item</a>
                             
                             </td>
@@ -109,21 +128,6 @@
 $(document).ready(function() {
       $('#basic-datatables').DataTable({
       });
-
-// $(document).ready(function() {
-//     $('#datatable').DataTable({
-//         processing:true,
-//         serverside:true,
-//         ajax:"{{route('ajax.get.data.pasien')}}",
-//         columns:[
-//             {data:'nocm',name:'nocm'},
-//             {data:'nama',name:'nama'},
-//             {data:'tanggal_indo',name:'tanggal_indo'},
-//             {data:'alamat',name:'alamat'},
-//             {data:'pekerjaan',name:'pekerjaan'}
-//         ]
-//     })
-// });
 
   $('#multi-filter-select').DataTable( {
         "pageLength": 5,

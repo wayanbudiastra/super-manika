@@ -275,10 +275,10 @@ Route::group(['middleware'=> ['auth','checkRole:admin']],function(){
         Route::get('load-modal-data-create-transaksi-tindakan-retail/{id}', 'PembayaranRetailDetailController@showmodalAddTransaksiTindakan');
         Route::get('load-modal-item-by-add-transaksi-retail', 'PembayaranRetailDetailController@ShowModalItemByAddTransaksi');
         Route::get('load-modal-item-by-add-transaksi-tindakan-retail', 'PembayaranRetailDetailController@ShowModalItemByAddTransaksiTindakan');
-        Route::post('pembayaran-detil', 'PembayaranRetailDetailController@AddPembayaranDetail');
+        Route::post('pembayaran-detil-retail', 'PembayaranRetailDetailController@AddPembayaranDetail');
      //   Route::get('pembayaran_retail_detil/', 'PembayaranRetailDetailController@index');
         Route::post('pembayaran_retail_detil/{id}/update', 'PembayaranRetailDetailController@update');
-        Route::post('hapus-pembayaran-retail-detail/{id}', 'PembayaranRetailDetailController@DeletePembayaranDetail');
+        Route::post('hapus-pembayaran-detail-retail/{id}', 'PembayaranRetailDetailController@DeletePembayaranDetail');
         Route::post('posting-pembayaran-retail-detail/{id}', 'PembayaranRetailDetailController@Posting');
         Route::get('pembayaran_retail_detil/printprev/{id}', 'PembayaranRetailDetailController@printprev');
          //Invoice
