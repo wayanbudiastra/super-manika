@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Pembayaran;
 use  App\User;
 use App\model\Pembayaran\Kas;
 use App\model\Pembayaran\Pembayaran_retail;
-use App\model\Pembayaran\Pembayaran_retail_detil;
+use App\model\Pembayaran\Pembayaran_retail_detail;
 use \App\model\Registrasi_retail;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -117,12 +117,81 @@ class PembayaranRetailController extends Controller
     }
 
     public function show(){
-        $data = Pembayaran::where('posting', 'Y')->where('aktif','Y')->orderby('id','desc')->get();
+        $data = Pembayaran_retail::where('posting', 'Y')->where('aktif','Y')->orderby('id','desc')->get();
        // dd($data);
 
-       return view('pembayaran.pembayaran_retail.show', ['data' => $data, 'no' => 0,
+       return view('pembayaran.pembayaran_retil.show', ['data' => $data, 'no' => 0,
            'subtitle' => 'Data Pembayaran',
            'title' => 'List Pembayaran Pasien']);
    }
+
+    public function showmodalAddpembayaran($id){
+
+        $data = Pembayaran_retail::where('id', '=', $id)->get()->first();
+        $total = Pembayaran_retail_detail::where('pembayaran_retail_id', $id)->sum("subtotal");
+
+        // dd($data);
+       
+        if($data->registrasi_retail->jenis_registrasi_retail_id=='umum'){
+            $type_pasien = 'umum';
+            $nama_pasien = 'umum';
+            $tgl_lahir = "-";
+        }else{
+            $type_pasien = 'pasien';
+            $nama_pasien = info_pasien_nama($data->registrasi_retail->pasien_id);
+            $tgl_lahir = tgl_indo(info_pasien_tgl_lahir($data->registrasi_retail->pasien_id));
+        }
+                            
+
+        return  response()->json([
+                     'data' => $data,
+                     'no_registrasi'=>$data->registrasi_retail->no_registrasi,
+                     'pasien'=> $nama_pasien,
+                     'dokter'=> $type_pasien,
+                     'poli'=> $tgl_lahir,
+                     'total'=> $total,
+                     'terbilang' => terbilang($total),
+                     'id'=> $id
+                 ]);
+       
+    }
+
+    public function SimpanInvoice(Request $request){
+
+        
+         try {
+        $kode = Pembayaran_retail::max('no_invoice');
+        $no_invoice = nomor_invoice_retail($kode);
+
+        $id = $request->id;
+        $data = Pembayaran_retail::where('id',$id)->update([
+            'no_invoice'=>$no_invoice,
+            'total_transaksi'=> $request->total,
+            'total_pembayaran'=> $request->pembayaran,
+            'aktif'=> 'N',
+            'invoice'=> '1',
+            'total_kembali'=> $request->kembali]);
+
+        //
+
+        return response()->json([
+            'data' => $data,
+            'no_invoice'=> $no_invoice,
+            'request' => $request->all()
+        ]);
+
+        } catch (\Exception $e) {
+            // store errors to log
+            \Log::error('class : ' . PembayaranRetailController::class . ' method : create | ' . $e);
+
+            return response()->json([
+                'success' => false,
+               // 'cek' => $cek,
+                'message' => "Data Gagal di Input"
+            ], 500);
+        }
+
+
+    }
 
 }

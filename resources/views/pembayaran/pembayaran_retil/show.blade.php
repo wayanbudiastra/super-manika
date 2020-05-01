@@ -52,7 +52,7 @@
                 </div>  
                  @endif
                   <div class="table-responsive" id="reloadpaginate">
-                     @include('pembayaran.pembayaran.paginate')
+                     @include('pembayaran.pembayaran_retil.paginate')
                   </div>
                 </div>
               </div>
@@ -84,7 +84,7 @@ $('.modal-pembayaran').on('click',function(){
 
   let data ;
   $.ajax({
-    url: '{!!  url('/'); !!}'+"/load-modal-data-pembayaran/" + id,
+    url: '{!!  url('/'); !!}'+"/load-modal-data-pembayaran-retil/" + id,
     success : m => {
       data = m.data;
       const detail = '';
@@ -102,7 +102,7 @@ $('.modal-pembayaran').on('click',function(){
       $('#kembali').val('');
       $('#kembali1').val('');
        document.getElementById('btnSimpan').innerHTML = '<button disabled style="cursor: not-allowed;" class="btn btn-success btn-round " id="simpanPembayaran"><i class="fa fa-plus"></i>Simpan</button>';
-
+       console.log(data);
     }
 
   })
@@ -138,7 +138,7 @@ $(document).on('keyup', '#pembayaran', function(){
 $(document).on('click', '#simpanPembayaran', function(){
 // console.log('bayar');
  $.ajax({
-    url: '{!!  url('/'); !!}'+'/pembayaran-simpam-invoice',
+    url: '{!!  url('/'); !!}'+'/pembayaran-retil-simpan-invoice',
     data: new FormData($("#CreateDataPembayaran")[0]),
     dataType: 'json',
     async: false,
@@ -149,6 +149,7 @@ $(document).on('click', '#simpanPembayaran', function(){
 
                         $(".showloading").prop('disabled', true);
                         // $('.modal-pembayaran').modal('dismis');
+                        console.log(response);
                         location.reload();  
                         $.notify({
                             // options
@@ -159,19 +160,18 @@ $(document).on('click', '#simpanPembayaran', function(){
                             type: 'success'
                         });
                    
-                   //  console.log(response);   
+                    //  console.log(response);   
                     // $('#reloadpaginate').html('');
                     // $('#ModalAddPembayaran').modal('hide');
                     // $('#reloadpaginate').load('{!!  url('/'); !!}'+"/pembayaran/show");
       },
       error: function (data) {
       $("#errMsg").prop('hidden', false);
-                    // $(".messagebox").show();
       $(".showloading").prop('disabled', true);
       $("#modal_create_expedition").scrollTop(0);
       $('#ShowErrordata').html('');
       $('.messagebox').show().addClass('alert-danger');
-          var messages = jQuery.parseJSON(data.responseText);
+      var messages = jQuery.parseJSON(data.responseText);
       $('#ShowErrordata').html(messages.message);
       }
     });

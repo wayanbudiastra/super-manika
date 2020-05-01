@@ -295,6 +295,18 @@ function nomor_invoice($kode){
 
 }
 
+function nomor_invoice_retail($kode){
+    // buat kode Item
+ if(!!$kode){
+    $tmp = substr($kode,4,6) + 1;
+    $kd = sprintf("%06s",$tmp);
+ }else{
+    $kd = "000001";
+ }
+ return "RTL-".$kd;
+
+}
+
 function nomor_regis($periode,$no_reg){
     $noregis = "REG-".$periode."-".$no_reg;
     return $noregis;

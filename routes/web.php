@@ -261,11 +261,11 @@ Route::group(['middleware'=> ['auth','checkRole:admin']],function(){
         Route::get('pembayaran_retil/{id}/edit', 'PembayaranRetailController@edit');
         Route::post('pembayaran_retil/{id}/update', 'PembayaranRetailController@update');
         Route::post('pembayaran_retil/lanjut/{id}', 'PembayaranRetailController@lanjut');
-        Route::get('pembayaran_retail/show', 'PembayaranRetailDetailController@show');
+        Route::get('pembayaran_retail/show', 'PembayaranRetailController@show');
         Route::get('pembayaran_retil/proses', 'PembayaranRetailController@proses');
         Route::get('lanjut-pembayaran-retil/{id}','PembayaranRetailController@lanjut_ajax'); 
-        Route::post('pembayaran_retil-simpam-invoice','PembayaranRetailController@SimpanInvoice'); 
-        Route::get('load-modal-data-pembayaran_retil/{id}', 'PembayaranRetailController@showmodalAddpembayaran');
+        Route::post('pembayaran-retil-simpan-invoice','PembayaranRetailController@SimpanInvoice'); 
+        Route::get('load-modal-data-pembayaran-retil/{id}', 'PembayaranRetailController@showmodalAddpembayaran');
 
 
         //Pembayaran Retail Detil
