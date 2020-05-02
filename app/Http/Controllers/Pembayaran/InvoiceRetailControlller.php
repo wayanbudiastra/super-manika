@@ -26,6 +26,12 @@ class InvoiceRetailControlller extends Controller
     public function index()
     {
         //
+        $data = Pembayaran_retail::where('aktif','N')->where('closing','N')->get();
+
+        //dd($data);
+         return view('pembayaran.invoice_retail.index',['data' => $data,'no' => 0,
+           'subtitle'=>'Data Invoice',
+           'title'=>'List Invoice Pasien']);
     }
 
     /**

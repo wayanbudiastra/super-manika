@@ -286,6 +286,13 @@ Route::group(['middleware'=> ['auth','checkRole:admin']],function(){
         Route::get('invoice/show/{id}', 'InvoiceController@show');
         Route::get('invoice/edit/{id}', 'InvoiceController@edit');
         Route::post('invoice/{id}/update', 'InvoiceController@update');
+
+        // Invoice retail
+
+        Route::resource('invoice_retail', 'InvoiceRetailControlller');
+        Route::get('invoice_retail/show/{id}', 'InvoiceRetailControlller@show');
+        Route::get('invoice_retail/edit/{id}', 'InvoiceRetailControlller@edit');
+        Route::post('invoice_retail/{id}/update', 'InvoiceRetailControlller@update');
         Route::get('/cobapdf',function () {
 
             Fpdf::AddPage();
