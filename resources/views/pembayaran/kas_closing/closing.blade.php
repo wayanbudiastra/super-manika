@@ -49,36 +49,29 @@
                                 
                                 <div class="nav-tabs-custom">
                                     <ul class="nav nav-tabs">
-                                      <li class="active nav-item"><a href="#tab_1" data-toggle="tab">Rawat Jalan</a></li>
+                                      <li class="active nav-item"><a href="#tab_1" class="btn btn-success btn-sm"data-toggle="tab">Rawat Jalan</a></li>
                                       <li class="separator">
                                         <i class="flaticon-right-arrow"></i>
                                       </li>
-                                      <li class="nav-item"><a href="#tab_2" data-toggle="tab">Retail</a></li>
+                                      <li class="nav-item"><a href="#tab_2" class="btn btn-primary btn-sm"data-toggle="tab">Retail</a></li>
                                       <li class="separator">
                                         <i class="flaticon-right-arrow"></i>
                                       </li>
-                                      <li class="nav-item"><a href="#tab_3" data-toggle="tab">Kas Manual</a></li>
+                                      <li class="nav-item"><a href="#tab_3" class="btn btn-warning btn-sm" data-toggle="tab">Kas Manual</a></li>
                                       
                                     </ul>
                                     <div class="tab-content">
-
-
                                         <div class="tab-pane active" id="tab_1">
                                             @include('pembayaran.kas_closing.pane1')
                                         </div>
-
-
                                         <div class="tab-pane" id="tab_2">
                                             @include('pembayaran.kas_closing.pane2')
                                            
                                         </div>
-
                                         <div class="tab-pane" id="tab_3">
                                             @include('pembayaran.kas_closing.pane3')
                                            
                                         </div>
-
-
                                     </div>
                                 </div>
                                 <hr>
@@ -95,17 +88,15 @@
                                     </tr>
                                     <tr>
                                         <td>Total Retail</td>
-                                        <td>-</td>
+                                    <td>{{rupiah($total_pembayaran_retail)}}</td>
                                     </tr>
                                     <tr>
                                         <td>Total Manual Kas</td>
                                         <td>{{rupiah($total_kasManual)}}</td>
                                     </tr>
-
-                                    
                                     <tr>
                                         @php
-                                            $kas_akhir = $kas->kas_awal + $total_pembayaran + $total_kasManual;
+                                            $kas_akhir = $kas->kas_awal + $total_pembayaran + $total_kasManual + $total_pembayaran_retail;
                                         @endphp
                                         <td>Kas Akhir</td>
                                         <td>{{rupiah($kas_akhir)}}</td>

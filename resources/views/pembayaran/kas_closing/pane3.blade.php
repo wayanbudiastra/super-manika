@@ -1,4 +1,6 @@
 <div class="table-responsive">
+    <br>
+    <div class="text-center"><h2>Data Kas Manual </h2> </div>
     <table id="basic-datatables2" class="display table table-striped table-hover">
         <thead>
                                         <tr>

@@ -328,6 +328,16 @@ function total_pembayaran($data){
 
 }
 
+function total_pembayaran_retail($data){
+    $total_pembayaran=0;
+    foreach($data as $k){
+        $total_pembayaran = $total_pembayaran + $k->total_transaksi;
+    }
+    return $total_pembayaran;
+
+
+}
+
 function total_kasManual($data){
         $total_kasManual=0;
     foreach($data as $k){

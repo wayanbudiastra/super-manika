@@ -149,13 +149,10 @@ $(document).on('click', '#simpanPembayaran', function(){
 
                         $(".showloading").prop('disabled', true);
                         // $('.modal-pembayaran').modal('dismis');
-                       // console.log(response);
-                        let url_invoice = '{!!  url('/'); !!}'+'/invoice_retail';
+                        console.log(response);
                         location.reload();  
-                        window.open(url_invoice);
                         $.notify({
-                            // options
-                            message: 'Data Berhasil Di Simpan'
+                              message: 'Data Berhasil Di Simpan'
                         }, {
                             // settings
                             time: 5000,

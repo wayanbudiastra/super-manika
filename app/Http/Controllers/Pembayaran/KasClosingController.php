@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Pembayaran;
     use App\model\MasterData\Dokter;
     use App\model\Pembayaran\Kas;
     use App\model\Pembayaran\Pembayaran;
+    use App\model\Pembayaran\Pembayaran_retail;
     use App\model\Pembayaran\Kas_manual;
     use App\Http\Controllers\Controller;
     use App\Http\Requests\MasterData\DokterRequest;
@@ -85,6 +86,7 @@ class KasClosingController extends Controller
        // dd($kas->toArray());
         $pembayaran = Pembayaran::where('kas_id','=',$id)->get();
         $kas_manual = Kas_manual::where('kas_id','=',$id)->get();
+        $pembayaran_retail = Pembayaran_retail::where('kas_id','=',$id)->get();
        // dd($pembayaran->toArray());
 
 
@@ -95,6 +97,8 @@ class KasClosingController extends Controller
                'kas_manual'             => $kas_manual,
                'total_kasManual'        => total_kasManual($kas_manual),
                'kas'                    => $kas,
+               'pembayaran_retail'      => $pembayaran_retail,
+               'total_pembayaran_retail'=> total_pembayaran_retail($pembayaran_retail),
                'title'                  => 'Data Kas',
                'subtitle'               => 'Proses Closing',
                'no'                     => '0',
@@ -114,13 +118,16 @@ class KasClosingController extends Controller
       $kas = Kas::find($id);
       $pembayaran = Pembayaran::where('kas_id','=',$id)->get();
       $kas_manual = Kas_manual::where('kas_id','=',$id)->get();
+      $pembayaran_retail = Pembayaran_retail::where('kas_id','=',$id)->get();
       $total_pembayaran = total_pembayaran($pembayaran);
+      $total_pembayaran_retail = total_pembayaran_retail($pembayaran_retail);
       $total_kasManual = total_kasManual($kas_manual);
-      $kas_akhir = $kas->kas_awal + $total_pembayaran + $total_kasManual;
+      $kas_akhir = $kas->kas_awal + $total_pembayaran + $total_kasManual + $total_pembayaran_retail;
 
       try{
           $kas->update(['tgl_close' => date('Y-m-d'),
           'total_transaksi' => $total_pembayaran,
+          'total_retail' => $total_pembayaran_retail,
           'total_manualKas' => $total_kasManual,
           'kas_akhir' => $kas_akhir,
           'aktif' => 'N' ]);
