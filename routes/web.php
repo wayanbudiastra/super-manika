@@ -208,6 +208,8 @@ Route::group(['middleware'=> ['auth','checkRole:admin']],function(){
         Route::post('jasa/{id}/update', 'JasaController@update');
         Route::post('jasa/cari', 'JasaController@cari');
 
+        // min max
+        
 
     });
 
@@ -355,7 +357,11 @@ Route::group(['middleware'=> ['auth','checkRole:admin']],function(){
         Route::post('ajustment/cari', 'AjustmentController@cari');
         Route::post('ajustment/store','AjustmentController@store'); 
        
-      });
+        Route::get('set_minmax','MinMaxController@index');
+        Route::get('set-stok-max/{id}/{qty}','MinMaxController@set_max');
+        Route::get('set-stok-min/{id}/{qty}','MinMaxController@set_min');
+        Route::post('set_minmax/cari', 'MinMaxController@cari');
+    });
 
 });
      Route::group(['middleware'=> ['auth','checkRole:admin,staff']],function(){
