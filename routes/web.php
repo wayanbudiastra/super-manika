@@ -343,7 +343,6 @@ Route::group(['middleware'=> ['auth','checkRole:admin']],function(){
         Route::get('retur/{id}/edit', 'ReturController@edit');
         Route::post('retur/{id}/update', 'ReturController@update');
 
-
         //kartu stok
         Route::resource('kartustok', 'Kartustok');
         Route::get('kartustok/cari', 'Kartustok@cari');
@@ -361,11 +360,21 @@ Route::group(['middleware'=> ['auth','checkRole:admin']],function(){
         Route::get('set-stok-max/{id}/{qty}','MinMaxController@set_max');
         Route::get('set-stok-min/{id}/{qty}','MinMaxController@set_min');
         Route::post('set_minmax/cari', 'MinMaxController@cari');
+
+        
     });
 
+
+    Route::group(['namespace' => 'Report'], function () {
+        Route::get('report/pendapatan','PendapatanController@index');
+        Route::post('report/pendapatan/pdf','PendapatanController@cetak_pdf');
+        Route::post('report/pendapatan/excel','PendapatanController@cetak_excel');
+    });
+   
+
 });
+
      Route::group(['middleware'=> ['auth','checkRole:admin,staff']],function(){
-        
      Route::get('/dashboard','DashboardController@index');  
 });
 

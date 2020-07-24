@@ -164,11 +164,13 @@ return [
          Yajra\DataTables\DataTablesServiceProvider::class,
          Collective\Html\HtmlServiceProvider::class,
          Barryvdh\DomPDF\ServiceProvider::class,
+         rizalafani\fpdflaravel\FpdfServiceProvider::class,
 
         /*
          * Package Service Providers...
          */
         Yajra\DataTables\DataTablesServiceProvider::class,
+        Maatwebsite\Excel\ExcelServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -232,6 +234,8 @@ return [
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\FormFacade::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
+        'FPDF' => rizalafani\fpdflaravel\FpdfFacade::class,
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
 
     ],
 

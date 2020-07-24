@@ -61,7 +61,7 @@
             <span class="caret"></span>
         </a>
         <div class="collapse" id="charts">
-           @include('layouts.menu.keuangan')
+           @include('layouts.menu.pembayaran')
         </div>
     </li>
     <!-- <li class="nav-item">
