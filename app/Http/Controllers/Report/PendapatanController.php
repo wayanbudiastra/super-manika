@@ -27,7 +27,26 @@ class PendapatanController extends Controller
         return view('report.pendapatan.index',[
             'title' => 'Pendapatan Transaksi',
             'subtitle' => 'Registrasi RM & Retail',
-            'data' => $data
+            'data' => $data,
+            'tgl_mulai' => date('Y-m-d'),
+            'tgl_selesai' => date('Y-m-d'),
+        ]);
+    }
+
+    public function get_data(Request $request){
+        $data = DB::table('pembayaran_detil')
+        ->join('pembayaran','pembayaran_detil.pembayaran_id','pembayaran.id')
+        ->whereBetween('pembayaran.tgl_pembayaran',[$request->tgl_mulai, $request->tgl_selesai])
+        ->where('pembayaran_detil.aktif','N')
+        ->get();
+
+        return view('report.pendapatan.index',[
+            'title' => 'Pendapatan Transaksi',
+            'subtitle' => 'Registrasi RM & Retail',
+            'data' => $data,
+            'tgl_mulai' => $request->tgl_mulai,
+            'tgl_selesai' => $request->tgl_selesai,
+
         ]);
     }
 

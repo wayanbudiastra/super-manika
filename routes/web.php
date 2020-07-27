@@ -367,8 +367,25 @@ Route::group(['middleware'=> ['auth','checkRole:admin']],function(){
 
     Route::group(['namespace' => 'Report'], function () {
         Route::get('report/pendapatan','PendapatanController@index');
+        Route::post('report/pendapatan/get_data','PendapatanController@get_data');
         Route::post('report/pendapatan/pdf','PendapatanController@cetak_pdf');
         Route::post('report/pendapatan/excel','PendapatanController@cetak_excel');
+        
+        Route::get('report/fee','FeeController@index');
+        Route::post('report/fee/get_dokter','FeeController@get_dokter');
+        Route::post('report/fee/pdf','FeeController@cetak_pdf');
+        Route::post('report/fee/excel','FeeController@cetak_excel');
+
+        Route::get('report/feeasdok','FeeAsistenController@index');
+        Route::post('report/feeasdok/get_data','FeeAsistenController@get_data');
+        Route::post('report/feeasdok/pdf','FeeAsistenController@cetak_pdf');
+        Route::post('report/feeasdok/excel','FeeAsistenController@cetak_excel');
+
+        Route::get('report/pasien','FeeController@index');
+        Route::post('report/pasien/get_data','PasienController@get_dokter');
+        Route::post('report/pasien/pdf','PasienController@cetak_pdf');
+        Route::post('report/pasien/excel','PeeController@cetak_excel');
+   
     });
    
 

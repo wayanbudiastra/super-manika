@@ -47,7 +47,7 @@
                                     </div>
                                 @endif
 
-                                <form action="{{url('report/pendapatan/get_data')}}" method="POST" enctype="multipart/form-data">
+                                <form action="{{url('report/feeasdok/get_data')}}"  method="POST" enctype="multipart/form-data">
                                     {{csrf_field()}}
                                     <div class="row mt-5">
                                         <div class="col-md-6">
@@ -74,36 +74,46 @@
                                                     />
                                             </div>
                                         </div>
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Asisten Dokter</label>
+                                            <select class="form-control select" style="min-width:350px;" required id="idAsdok" name="asdok_id">
+                                                     <option></option>         
+                                                        @foreach($asdok as $a)
+                                                         
+                                                          <option value='{{$a->id}}' >{{$a->nama_asdok}}</option> 
+                                                        @endforeach
+                                             </select> 
+                                             </div>
                                     </div>
         
                             </div>
                             <div class="modal-footer mt-2">
-
                                 <button type="submit" class="btn btn-primary btn-sm btn-round ml-auto">
-                                    <i class="fa fa-print"></i>
+                                    <i class="fa fa-save"></i>
                                         Get Data
                                 </button>
-
                             </form>
-                            <form action="{{url('report/pendapatan/pdf')}}" method="POST" target="_Blank">
+                        <form action="{{url('report/feeasdok/pdf')}}" method="POST" target="_Blank">
+                            {{csrf_field()}}
+                            <input type="hidden" name="tgl_mulai" value="{{$tgl_mulai}}">
+                            <input type="hidden" name="tgl_selesai" value="{{$tgl_selesai}}">
+                            <input type="hidden" name="asdok_id" value="{{$asdok_id}}">
+                                <button type="submit" class="btn btn-danger btn-sm btn-round ml-auto">
+                                    <i class="fa fa-print"></i>
+                                        Cetak PDF
+                                </button>
+                            </form>
+                            <form action="{{url('report/feeasdok/excel')}}" method="POST" target="_Blank">
                                 {{csrf_field()}}
                                 <input type="hidden" name="tgl_mulai" value="{{$tgl_mulai}}">
                                 <input type="hidden" name="tgl_selesai" value="{{$tgl_selesai}}">
-                                    <button type="submit" class="btn btn-danger btn-sm btn-round ml-auto">
-                                        <i class="fa fa-print"></i>
-                                            Cetak PDF
-                                    </button>
-                            </form>
-                                
-                            <form action="{{url('report/pendapatan/excel')}}" method="POST" target="_Blank">
-                                {{csrf_field()}}
-                                <input type="hidden" name="tgl_mulai" value="{{$tgl_mulai}}">
-                                <input type="hidden" name="tgl_selesai" value="{{$tgl_selesai}}">
+                                <input type="hidden" name="asdok_id" value="{{$asdok_id}}">
                                 <button type="submit" class="btn btn-success btn-sm btn-round ml-1" id="cetak_excel">
                                     <i class="fa fa-plus"></i>
                                     Cetak EXCEL</button>
-                            </form>
+                                </form>
                             </div>
+                            
                         
 
 
@@ -115,8 +125,9 @@
                                             <th>No Invoice</th>
                                             <th>Transaksi</th>
                                             <th>Item</th>
-                                            <th>Harga</th>
+                                            <th>Asisten Dokter</th>
                                             <th>Qty</th>
+                                            <th>Fee Asisten Dokter</th>
                                             <th>Subtotal</th>
                                         </tr>
                                         </thead>
@@ -130,9 +141,10 @@
                                                 <td>{{$k->no_invoice}}</td>
                                                 <td>{{$k->transaksi}}</td>
                                                 <td>{{$k->nama_item}}</td>
-                                                <td>{{$k->harga_jual}}</td>
+                                                <td>{{$k->nama_asdok}}</td>
                                                 <td>{{$k->qty}}</td>
-                                                <td>{{$k->subtotal}}</td>
+                                                <td>{{rupiah($k->fee_asisten)}}</td>
+                                                <td>{{rupiah($k->qty * $k->fee_asisten)}}</td>
                                             </tr>
 
                                         @endforeach
@@ -249,6 +261,7 @@
 
                     });
                 });
+                $('#idAsdok').select2({placeholder: "Pilih Asisten...", width: '100%'});
             </script>
 
            

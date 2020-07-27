@@ -7,13 +7,18 @@
         <div class="collapse" id="subnav11">
             <ul class="nav nav-collapse subnav">
                 <li>
-                    <a href="{{url('report/master/user')}}">
-                        <span class="sub-item">Users Login</span>
+                    <a href="{{url('report/pasien')}}">
+                        <span class="sub-item">Pasien List</span>
                     </a>
                 </li>
                 <li>
-                    <a href="{{url('report/master/dokter')}}">
-                        <span class="sub-item">Dokter Login</span>
+                    <a href="{{url('report/dokter')}}">
+                        <span class="sub-item">Dokter</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{url('report/terapis')}}">
+                        <span class="sub-item">terapis</span>
                     </a>
                 </li>
             </ul>
@@ -33,9 +38,14 @@
                 </li>
                 <li>
                 <a href="{{url('report/fee')}}">
-                        <span class="sub-item">Fee Dokter & Terapis</span>
-                    </a>
+                        <span class="sub-item">Fee Dokter</span>
+                </a>
                 </li>
+                <li>
+                    <a href="{{url('report/feeasdok')}}">
+                            <span class="sub-item">Fee Asisten</span>
+                    </a>
+                    </li>
             </ul>
         </div>
     </li>
