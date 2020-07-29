@@ -382,9 +382,8 @@ Route::group(['middleware'=> ['auth','checkRole:admin']],function(){
         Route::post('report/feeasdok/excel','FeeAsistenController@cetak_excel');
 
         Route::get('report/pasien','PasienController@index');
-        Route::post('report/pasien/get_data','PasienController@get_data');
-        Route::post('report/pasien/pdf','PasienController@cetak_pdf');
-        Route::post('report/pasien/excel','PeeController@cetak_excel');
+        Route::get('report/pasien/pdf','PasienController@cetak_pdf');
+        Route::get('report/pasien/excel','PasienController@cetak_excel');
 
         Route::get('report/dokter','DokterController@index');
         Route::get('report/dokter/pdf','DokterController@cetak_pdf');
