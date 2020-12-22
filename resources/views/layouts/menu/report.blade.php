@@ -37,6 +37,12 @@
                     </a>
                 </li>
                 <li>
+                    <a href="{{url('report/closing')}}">
+                            <span class="sub-item">Closing</span>
+                        </a>
+                    </li>
+                    
+                <li>
                 <a href="{{url('report/fee')}}">
                         <span class="sub-item">Fee Dokter</span>
                 </a>

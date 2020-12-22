@@ -371,6 +371,12 @@ Route::group(['middleware'=> ['auth','checkRole:admin']],function(){
         Route::post('report/pendapatan/pdf','PendapatanController@cetak_pdf');
         Route::post('report/pendapatan/excel','PendapatanController@cetak_excel');
         
+        Route::get('report/closing','ClosingController@index');
+        Route::get('report/closing/{id}/edit','ClosingController@edit');
+        Route::post('report/closing/get_data','ClosingController@get_data');
+        Route::get('report/closing/{id}/pdf','ClosingController@cetak_pdf');
+        Route::post('report/closing/excel','ClosingController@cetak_excel');
+        
         Route::get('report/fee','FeeController@index');
         Route::post('report/fee/get_dokter','FeeController@get_dokter');
         Route::post('report/fee/pdf','FeeController@cetak_pdf');
